@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+
+    <title>Sistema de reclutamento</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{webjars/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet"/>
+
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet"/>
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="css/coming-soon.min.css" rel="stylesheet"/>
+  </head>
+
+  <body style="background-color: #2A2627">
+
+    <div class="overlay"></div>
+    <div class="masthead">
+      <div class="masthead-bg"></div>
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12 my-auto">
+            <div class="masthead-content text-white py-5 py-md-0">
+              <h1 class="mb-3">Planea.</h1>
+              <p class="mb-5">Bienvenido a Planea la mejor plataforma de reclutamiento de personal para proyectos de software.
+                <strong>Entra o <a href="#modalRegistro" data-toggle="modal" data-target="#modalRegistro">registrate</a></strong></p>
+				 <form th:action="@{/usuarioController/login}" method="post">
+		              <div class="input-group input-group-newsletter">
+		                <input type="email" class="form-control" placeholder="Enter email..." aria-label="Enter email..." aria-describedby="basic-addon" name="correo"></input>
+		              </div>
+		              <hr></hr>
+		              <hr></hr>
+		              <div class="input-group input-group-newsletter">
+		                
+		                <input type="password" class="form-control" placeholder="Enter password..." aria-label="Enter password..." aria-describedby="basic-addon" name="contrasenia"></input>
+		                
+		
+		              </div>
+		              <hr></hr><hr></hr>
+		              <div class="text-center">
+		                  <button class="btn btn-secondary" type="submit" name="enviar" value="entrar">Login</button>
+		              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-icons">
+      <ul class="list-unstyled text-center mb-0">
+        <li class="list-unstyled-item">
+          <a href="#">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-unstyled-item">
+          <a href="#">
+            <i class="fa fa-facebook"></i>
+          </a>
+        </li>
+        <li class="list-unstyled-item">
+          <a href="#">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Modal de registro-->
+  <div class="modal fade" id="modalRegistro">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><strong>Registro</strong></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        
+           <!-- Formulario para registrar a un usuario -->
+		<div class="row">
+      <div class="col-sm-12">
+      
+        <form th:action="@{/usuarioController/registrarUsuario}" method="post">
+        
+          <div class="row">         
+            <div class="col-sm-10">
+            
+            	<div class="form-group">
+				    <label for="inputNombreUsuario">Nombre</label>
+				    <input type="text" class="form-control" id="inputNombreUsuario" aria-describedby="nombreHelp"  name="nombre" placeholder="Ingrese nombre..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
+				    <small id="nombreHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="inputApellidoPaterno">Apellido paterno</label>
+				    <input type="text" class="form-control" id="inputApellidoPaterno" aria-describedby="apellidoPaternoHelp"  name="apellidoPaterno" placeholder="Ingrese apellido paterno..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
+				    <small id="apellidoPaternoHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="inputApellidoMaterno">Apellido materno</label>
+				    <input type="text" class="form-control" id="inputApellidoMaterno" aria-describedby="apellidoMaternoHelp"  name="apellidoMaterno" placeholder="Ingrese apellido materno..." required="true" pattern="[A-Za-z//ñ// ]{3,50}"/>
+				    <small id="apellidoMaternoHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+           <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="correoUsuario">Correo</label>
+				    <input type="email" class="form-control" id="correoUsuario" aria-describedby="correoUsuarioHelp"  name="correo" placeholder="Ingrese correo electrónico..." required="true" />
+				    <small id="correoUsuarioHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="contraseniaUsuario">Contraseña</label>
+				    <input type="password" class="form-control" id="contraseniaUsuario" aria-describedby="contraseniaUsuarioHelp"  name="contrasenia" placeholder="Ingrese contraseña..." required="true" pattern="[A-Za-z//ñ//]{3,50}"/>
+				    <small id="contraseniaUsuarioHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="telefonoUsuario">Teléfono</label>
+				    <input type="text" class="form-control" id="telefonoUsuario" aria-describedby="telefonoUsuarioHelp"  name="telefono" placeholder="Ingrese telefono..." required="true" pattern="[0-9]{10}"/>
+				    <small id="telefonoUsuarioHelp" class="form-text text-muted">El número teléfonico debe ser de 10 dígitos.</small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="edadUsuario">Edad</label>
+				    <input type="Number" class="form-control" id="edadUsuario" aria-describedby="edadUsuarioHelp"  name="edad" placeholder="Ingrese edad.." required="true" min="1" max="180"/>
+				    <small id="edadUsuarioHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="webUsuario">Web</label>
+				    <input type="text" class="form-control" id="webUsuario" aria-describedby="webUsuarioHelp"  name="web" placeholder="Ingrese url de sitio web..." required="true"/>
+				    <small id="webUsuarioHelp" class="form-text text-muted">Ejemplo: https://www.linkedin.com/nombre</small>
+  				</div>            	
+            </div>
+          </div>
+          <div class="row">         
+            <div class="col-sm-10">        
+            	<!-- <div class="form-group">
+				    <label for="tituloUsuario">Titulo</label>
+				    <input type="text" class="form-control" id="tituloUsuario" aria-describedby="tituloUsuarioHelp"  name="titulo" placeholder="Ingrese titulo..." required="true"/>
+				    <small id="tituloUsuarioHelp" class="form-text text-muted"></small>
+  				</div> -->
+  				<div class="form-group">
+				    <label for="exampleSelect1" >Titulo </label>
+				    <select class="form-control" id="titulo" required="true" name="titulo" >
+				      <option value="Estudiante">Estudiante</option>
+				      <option value="Licenciatura">Licenciatura</option>
+				      <option value="Ingeniería">Ingeniería</option>
+				      <option value="Posgrado">Posgrado</option>
+				      <option value="Maestría">Maestría</option>
+				      <option value="Doctorado">Doctorado</option>
+				      
+				    </select>
+  </div>            	
+            </div>
+          </div>
+          <!-- <div class="row">         
+            <div class="col-sm-10">        
+            	<div class="form-group">
+				    <label for="tituloUsuario">Edad</label>
+				    <input type="text" class="form-control" id="tituloUsuario" aria-describedby="tituloUsuarioHelp"  name="titulo" placeholder="Ingrese titulo..."/>
+				    <small id="tituloUsuarioHelp" class="form-text text-muted"></small>
+  				</div>            	
+            </div>
+          </div> -->
+          <hr></hr>
+          
+          <h4 class="text-center">
+              Habilidades
+            </h4>
+          <br></br>
+          
+          <div class="row text-center">
+            <div class="col-sm-6">
+              <h6>
+                Lenguajes de programacion
+              </h6>
+              	
+                <div class="row">
+                  <div class="col-sm-1" >
+                    <input type="checkbox" name="lenguaje" id="lenguaje" value="c"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="lenguaje" style="color: black">C</label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="lenguaje" id="lenguaje" value="c++"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="lenguaje1" style="color: black">C++</label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="lenguaje" id="lenguaje" value="c#"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="lenguaje2" style="color: black">C#</label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="lenguaje" id="lenguaje" value="java"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="lenguaje3" style="color: black">Java</label>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <h6>
+                Idiomas
+              </h6>
+              <br/>
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="idioma" id="idioma" value="ingles"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="idioma" style="color: black">Ingles</label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="idioma" id="idioma" value="espanol"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="idioma1" style="color: black">Español</label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-1">
+                    <input type="checkbox" name="idioma" id="idioma" value="frances"></input>
+                  </div>
+                  <div class="col-sm-9">
+                    <label for="idioma2" style="color: black">Frances</label>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <input class="btn btn-secondary" type="submit" name="enviar"  value="Registrarse"></input>
+          </div>
+          
+        </form>
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        
+        
+      </div>
+    </div>
+  </div>
+  
+<!--   <div class="modal" tabindex="-1" role="dialog" id="mdAviso">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div th:switch="${exito}"> 
+		  <p th:case="'error'" th:text="${error}"></p>
+		  <p th:case="'exito'" >Usuario Registrado exitosamente</p>
+		  
+		</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal -->
+<div class="modal fade" id="mdAviso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aviso!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div th:switch="${exito}"> 
+		  <p th:case="'error'">Error al registrar intentelo mas tarde</p>
+		  <p th:case="'exito'">Usuario Registrado exitosamente</p>
+		  <p id="mensaje"></p>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Bootstrap core JavaScript -->
+     <!-- Jquery y Boostrap scripts -->
+		<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+        <script src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- <script src="/src/main/resources/estaticos/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Plugin JavaScript -->
+   <script src="vendor/vide/jquery.vide.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/coming-soon.min.js"></script>
+    
+    <script type="text/javascript" src="js/coming-soon.js"></script>
+    
+    <script th:inline="javascript">
+		/*<![CDATA[*/
+
+    	var message = /*[[${exito}]]*/ 'default';
+    	console.log(message);
+    	if(message != null){
+    		
+    		$('#mdAviso').modal('show');
+    		mensajePartes= mensaje.split("=");
+    		
+    		$("#mensaje").html(mensajePartes[1]);
+    	}
+    	messaje=null;
+
+		/*]]>*/
+	</script>
+  </body>
+
+</html>

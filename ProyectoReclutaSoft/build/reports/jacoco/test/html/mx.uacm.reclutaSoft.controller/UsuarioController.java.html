@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.controller</a> &gt; <span class="el_source">UsuarioController.java</span></div><h1>UsuarioController.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import mx.uacm.reclutaSoft.constantes.Error;
+import mx.uacm.reclutaSoft.domain.Habilidad;
+import mx.uacm.reclutaSoft.domain.Usuario;
+import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
+import mx.uacm.reclutaSoft.service.UsuarioService;
+
+@Controller
+@RequestMapping(&quot;/usuarioController&quot;)
+<span class="fc" id="L28">public class UsuarioController {</span>
+<span class="fc" id="L29">	private final Logger log = LogManager.getLogger(UsuarioController.class);</span>
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private HttpSession httpSession; 
+	
+	@PostMapping(&quot;/registrarUsuario&quot;)
+	public String registrarUsuario(Map &lt;String, Object&gt; model, Usuario usuario,
+			                       @RequestParam(&quot;lenguaje&quot;) List&lt;String&gt;lenguajes,
+			                       @RequestParam(&quot;idioma&quot;) List&lt;String&gt;idiomas) {
+<span class="fc" id="L41">		log.debug(&quot;Entrando al metodo UsuarioController.registrarUsuario&quot;);</span>
+	
+		
+<span class="fc" id="L44">		Usuario usuarioRegresado = new Usuario();</span>
+		
+		try {
+<span class="fc" id="L47">			usuarioRegresado = usuarioService.alta(usuario, lenguajes, idiomas);</span>
+<span class="fc" id="L48">		} catch (AppExcepcion e) {</span>
+//			String excepcion = e.getMessage();
+<span class="pc bpc" id="L50" title="1 of 11 branches missed.">			switch (e.getMessage()) {</span>
+			case Error.MAL_NOMBRE:
+<span class="fc" id="L52">				log.debug(&quot;Error MAL_NOMBRE&quot;);</span>
+<span class="fc" id="L53">				model.put(&quot;error&quot;, Error.MAL_NOMBRE);</span>
+<span class="fc" id="L54">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_AP_PATERNO:
+<span class="fc" id="L57">				log.debug(&quot;Error MAL_AP_PATERNO&quot;);</span>
+<span class="fc" id="L58">				model.put(&quot;error&quot;, Error.MAL_AP_PATERNO);</span>
+<span class="fc" id="L59">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_AP_MATERNO:
+<span class="fc" id="L62">				log.debug(&quot;Error MAL_AP_MATERNO&quot;);</span>
+<span class="fc" id="L63">				model.put(&quot;error&quot;, Error.MAL_AP_MATERNO);</span>
+<span class="fc" id="L64">				return &quot;redirect:/error&quot;;</span>
+			
+			case Error.MAL_CORREO:
+<span class="fc" id="L67">				log.debug(&quot;Error MAL_CORREO&quot;);</span>
+<span class="fc" id="L68">				model.put(&quot;error&quot;, Error.MAL_CORREO);</span>
+<span class="fc" id="L69">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_CONTRASENIA:
+<span class="fc" id="L72">				log.debug(&quot;Error MAL_CONTRASENIA&quot;);</span>
+<span class="fc" id="L73">				model.put(&quot;error&quot;, Error.MAL_CONTRASENIA);</span>
+<span class="fc" id="L74">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_TELEFONO:
+<span class="fc" id="L77">				log.debug(&quot;Error MAL_TELEFONO&quot;);</span>
+<span class="fc" id="L78">				model.put(&quot;error&quot;, Error.MAL_TELEFONO);</span>
+<span class="fc" id="L79">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_HABILIDADES:
+<span class="fc" id="L82">				log.debug(&quot;Error MAL_HABILIDADES&quot;);</span>
+<span class="fc" id="L83">				model.put(&quot;error&quot;, Error.MAL_HABILIDADES);</span>
+<span class="fc" id="L84">				return &quot;redirect:/error&quot;;</span>
+			
+			case Error.MAL_EDAD:
+<span class="fc" id="L87">				log.debug(&quot;Error MAL_EDAD&quot;);</span>
+<span class="fc" id="L88">				model.put(&quot;error&quot;, Error.MAL_EDAD);</span>
+<span class="fc" id="L89">				return &quot;redirect:/error&quot;;</span>
+				
+			case Error.MAL_WEB:
+<span class="fc" id="L92">				log.debug(&quot;Error MAL_WEB&quot;);</span>
+<span class="fc" id="L93">				model.put(&quot;error&quot;, Error.MAL_WEB);</span>
+<span class="fc" id="L94">				return &quot;redirect:/error&quot;;	</span>
+			
+			case Error.MAL_GR_ACADEMICO:
+<span class="fc" id="L97">				log.debug(&quot;Error MAL_GR_ACADEMICO&quot;);</span>
+<span class="fc" id="L98">				model.put(&quot;error&quot;, Error.MAL_GR_ACADEMICO);</span>
+<span class="fc" id="L99">				return &quot;redirect:/error&quot;;</span>
+				
+			default:
+				break;
+			}
+<span class="fc" id="L104">		}</span>
+<span class="fc" id="L105">		model.put(&quot;enviado&quot;, usuarioRegresado);</span>
+<span class="fc" id="L106">		return &quot;redirect:/perfil&quot;;</span>
+	}
+	
+//	@PostMapping(&quot;/login&quot;)
+//	public ModelAndView login(Map &lt;String, Object&gt; model, Usuario usuario) {
+//		log.debug(&quot;Entrando al metodo UsuarioController.login&quot;);
+//		String correo = usuario.getCorreo();
+//		String contrasenia = usuario.getContrasenia();
+//		
+//		Usuario usuarioRegresado = new Usuario();
+//		
+//		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//		
+//		try {
+//			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);
+//			
+////			log.debug(usuarioRegresado.getCorreo());
+//			usuarios = usuarioService.findUsuarios();
+//			
+//			if (usuarioRegresado != null) {
+//				log.debug(&quot;entro a usuario regresado&quot;);
+//				httpSession.setAttribute(&quot;userLoggedIn&quot;, usuarioRegresado);
+//				
+//				model.put(&quot;exitoso&quot;, &quot;Login exitoso&quot;);
+//				model.put(&quot;usuarios&quot;, usuarios);
+////				model.setViewName(&quot;redirect:/action&quot;);
+//				
+//				
+//			} else {
+//				model.put(&quot;error&quot;, &quot;Error en el correo de usuario o en la contrasenia&quot;);
+//				return new ModelAndView(&quot;redirect:/&quot;, model);
+//				
+//				//return &quot;redirect:/error&quot;;
+//			}
+//		} catch (Exception e) {
+//			switch (e.getMessage()) {
+//			case Error.MAL_CORREO:
+//				model.put(&quot;error&quot;, Error.MAL_CORREO);
+//				return new ModelAndView(&quot;redirect:/&quot;, model);
+////				break;
+////				return &quot;redirect:/error&quot;;
+//				
+//			case Error.MAL_CONTRASENIA:
+//				
+//				model.put(&quot;error&quot;, Error.MAL_CONTRASENIA);
+//				return new ModelAndView(&quot;redirect:/&quot;, model);
+////				break;
+////				return &quot;redirect:/error&quot;;
+//
+//			default:
+//				break;
+//			}
+//		}
+//		return new ModelAndView(&quot;action&quot;, model);
+//		//return new ModelAndView(&quot;redirect:/action&quot;, model);
+//		//return model;
+//	}
+	
+
+	@PostMapping(&quot;/login&quot;)
+	public ModelAndView login(Map &lt;String, Object&gt; model, Usuario usuario) {
+<span class="fc" id="L167">		log.debug(&quot;Entrando al metodo UsuarioController.login&quot;);</span>
+<span class="fc" id="L168">		String correo = usuario.getCorreo();</span>
+<span class="fc" id="L169">		String contrasenia = usuario.getContrasenia();</span>
+		
+<span class="fc" id="L171">		Usuario usuarioRegresado = new Usuario();</span>
+		
+<span class="fc" id="L173">		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();</span>
+		
+		try {
+<span class="nc" id="L176">			usuarioRegresado = usuarioService.findByEmailAndPassword(correo, contrasenia);</span>
+			
+<span class="nc" id="L178">			usuarios = usuarioService.findUsuarios();</span>
+			
+<span class="nc bnc" id="L180" title="All 2 branches missed.">			if (usuarioRegresado != null) {</span>
+<span class="nc" id="L181">				log.debug(&quot;entro a usuario regresado&quot;);</span>
+				//log.debug(usuarioRegresado.getHabilidades().get(0));
+<span class="nc" id="L183">				httpSession.setAttribute(&quot;userLoggedIn&quot;, usuarioRegresado);</span>
+<span class="nc" id="L184">				model.put(&quot;nombreUsuario&quot;, usuarioRegresado.getNombre());</span>
+<span class="nc" id="L185">				model.put(&quot;correoUsuario&quot;, usuarioRegresado.getCorreo());</span>
+<span class="nc" id="L186">				model.put(&quot;apellidoPaternoUsuario&quot;,usuarioRegresado.getApellidoPaterno());</span>
+<span class="nc" id="L187">				model.put(&quot;apellidoMaternoUsuario&quot;,usuarioRegresado.getApellidoMaterno());</span>
+<span class="nc" id="L188">				model.put(&quot;tituloUsuario&quot;,usuarioRegresado.getTitulo());</span>
+<span class="nc" id="L189">				model.put(&quot;webSiteUsuario&quot;,usuarioRegresado.getWeb());</span>
+<span class="nc" id="L190">				model.put(&quot;reputacionUsuario&quot;,usuarioRegresado.getReputacion());</span>
+<span class="nc" id="L191">				model.put(&quot;habilidadesUsuario&quot;,usuarioRegresado.getHabilidades());</span>
+<span class="nc" id="L192">				model.put(&quot;exitoso&quot;, &quot;Login exitoso&quot;);</span>
+<span class="nc" id="L193">				model.put(&quot;usuarios&quot;, usuarios);</span>
+				
+				
+			} else {
+<span class="nc" id="L197">				model.put(&quot;error&quot;, &quot;Error en el correo de usuario o en la contrasenia&quot;);</span>
+<span class="nc" id="L198">				return new ModelAndView(&quot;redirect:/&quot;, model);</span>
+			}
+<span class="fc" id="L200">		} catch (Exception e) {</span>
+<span class="pc bpc" id="L201" title="4 of 10 branches missed.">			switch (e.getMessage()) {</span>
+			case Error.MAL_CORREO:
+<span class="fc" id="L203">				model.put(&quot;error&quot;, Error.MAL_CORREO);</span>
+<span class="fc" id="L204">				return new ModelAndView(&quot;redirect:/&quot;, model);</span>
+				
+			case Error.MAL_CONTRASENIA:
+				
+<span class="fc" id="L208">				model.put(&quot;error&quot;, Error.MAL_CONTRASENIA);</span>
+<span class="fc" id="L209">				return new ModelAndView(&quot;redirect:/&quot;, model);</span>
+
+			default:
+				break;
+			}
+<span class="nc" id="L214">		}</span>
+<span class="nc" id="L215">		return new ModelAndView(&quot;action&quot;, model);</span>
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@GetMapping(&quot;/obtenerUsuarios&quot;)
+//	public ModelAndView obtenerUsuarios(Map &lt;String, Object&gt; model) {
+//		
+//		log.debug(&quot;Entrando al metodo UsuarioController.obtenerUsuarios********************************************************&quot;);
+//		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//		try {
+//			usuarios = usuarioService.findUsuarios();
+//			
+//			
+////			for (Usuario usuario : usuarios) {
+////				log.debug(usuario.getCorreo());
+////			}
+//			
+//			model.put(&quot;usuarios&quot;, usuarios);
+//		} catch (AppExcepcion e) {
+//			model.put(&quot;error&quot;, e.getMessage());
+////			return &quot;redirect:/error&quot;;
+//		}
+//		
+//		
+//		return new ModelAndView(&quot;redirect:/action&quot;, model);
+//	}
+//	
+//	@GetMapping(&quot;/obtenerUsuariosDos&quot;)
+//	public String obtenerUsuariosDos(Model model) {
+//		log.debug(&quot;Entrando al metodo UsuarioController.obtenerUsuarios2********************************************************&quot;);
+//		
+//		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//		
+//		try {
+//			
+//			
+//			model.addAttribute(&quot;usuarios&quot;, usuarioService.findUsuarios());
+//		} catch (AppExcepcion e) {
+//			
+//			return &quot;usuarios&quot;;
+//		}
+//		
+//		
+//		return null;
+//	}
+	
+	
+//	@GetMapping(&quot;/obtenerUsuariosPorNombreYTipoDeHabilidad&quot;)
+//	public String obtenerUsuariosPorNombreYTipoDeHabilidad(Map &lt;String, Object&gt; model, 
+//														   @RequestParam(&quot;tipo&quot;) String tipo, 
+//														   @RequestParam(&quot;nombre&quot;) String nombre) {
+//		log.debug(&quot;Entrando al metodo UsuarioController.obtenerUsuariosPorNombreYTipoDeHabilidad&quot;);
+//			
+//		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//		
+//		try {
+//			usuarios = usuarioService.findUsersByHabilidadTipoAndNombre(tipo, nombre);
+//			
+//			model.put(&quot;usuarios&quot;, usuarios);
+//		} catch (AppExcepcion e) {
+//			
+//			switch (e.getMessage()) {
+//			case Error.MAL_NOM_HABILIDAD:
+//				log.debug(&quot;Error MAL_NOM_HABILIDAD&quot;);
+//				model.put(&quot;error&quot;, Error.MAL_NOM_HABILIDAD);
+//				return &quot;redirect:/error&quot;;
+//				
+//			case Error.MAL_TP_HABILIDAD:
+//				log.debug(&quot;Error MAL_TP_HABILIDAD&quot;);
+//				model.put(&quot;error&quot;, Error.MAL_TP_HABILIDAD);
+//				return &quot;redirect:/error&quot;;
+//				
+//			default:
+//				break;
+//			}
+//		}
+//		
+//		return &quot;pruebasMarco&quot;;
+//	
+//	}
+	
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

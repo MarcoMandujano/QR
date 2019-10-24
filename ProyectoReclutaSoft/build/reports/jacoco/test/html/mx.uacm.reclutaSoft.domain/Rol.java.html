@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rol.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.domain</a> &gt; <span class="el_source">Rol.java</span></div><h1>Rol.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+<span class="fc" id="L17">public class Rol {</span>
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
+	@ManyToOne
+	@JoinColumn(name=&quot;proyecto_id&quot;)
+	private Proyecto proyecto;
+	
+	private String nombre;
+	
+//	@OneToMany(mappedBy=&quot;rol&quot;, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+//	private List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+	
+	@ManyToOne
+	@JoinColumn(name=&quot;usuario_id&quot;)
+	private Usuario usuario;
+	
+	public long getId() {
+<span class="nc" id="L36">		return id;</span>
+	}
+
+	public void setId(long id) {
+<span class="nc" id="L40">		this.id = id;</span>
+<span class="nc" id="L41">	}</span>
+	
+	public Proyecto getProyecto() {
+<span class="nc" id="L44">		return proyecto;</span>
+	}
+
+	public void setProyecto(Proyecto proyecto) {
+<span class="fc" id="L48">		this.proyecto = proyecto;</span>
+<span class="fc" id="L49">	}</span>
+
+	public String getNombre() {
+<span class="nc" id="L52">		return nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="fc" id="L56">		this.nombre = nombre;</span>
+<span class="fc" id="L57">	}</span>
+	
+	public Usuario getUsuario() {
+<span class="nc" id="L60">		return usuario;</span>
+	}
+	
+	public void setUsuario(Usuario usuario) {
+<span class="fc" id="L64">		this.usuario = usuario;</span>
+<span class="fc" id="L65">	}</span>
+	
+//	public List&lt;Usuario&gt; getUsuarios() {
+//		return usuarios;
+//	}
+//
+//	public void setUsuarios(List&lt;Usuario&gt; usuarios) {
+//		this.usuarios = usuarios;
+//		for (Usuario usuario : usuarios) {
+//			usuario.setRol(this);
+//		}
+//	}
+//	
+//	public void setUsuario(Usuario usuario) {
+//		usuarios.add(usuario);
+//		usuario.setRol(this);
+//	}
+//	
+//	public void removeUsuario(Usuario usuario) {
+//		usuarios.remove(usuario);
+//		usuario.setRol(null);
+//	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

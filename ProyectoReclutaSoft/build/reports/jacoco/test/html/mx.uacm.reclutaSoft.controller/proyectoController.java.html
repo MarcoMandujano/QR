@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>proyectoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.controller</a> &gt; <span class="el_source">proyectoController.java</span></div><h1>proyectoController.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import mx.uacm.reclutaSoft.constantes.Error;
+import mx.uacm.reclutaSoft.domain.Proyecto;
+import mx.uacm.reclutaSoft.domain.Usuario;
+import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
+import mx.uacm.reclutaSoft.service.ProyectoService;
+import mx.uacm.reclutaSoft.service.UsuarioService;
+
+
+@Controller
+@RequestMapping(&quot;/registrarProyecto&quot;)
+<span class="fc" id="L33">public class proyectoController {</span>
+	
+	
+<span class="fc" id="L36">private final Logger log = LogManager.getLogger(proyectoController.class);</span>
+	
+	@Autowired
+	private ProyectoService proyectoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private HttpSession httpSession; 
+	
+	
+//	@GetMapping(&quot;/obtenerProyectos&quot;)
+//	public String obtenerProyectos() {
+//		log.debug(&quot;Entrando a ProyectoController.obtenerProyectos&quot;);
+//		Map &lt;String, Object&gt; model = new HashMap&lt;&gt;();
+//		List&lt;Proyecto&gt; proyectos = new ArrayList&lt;Proyecto&gt;();
+//		
+//		try {
+//			proyectos = proyectoService.findPoryectos();
+//			model.put(&quot;proyectos&quot;, proyectos);
+//		} catch (AppExcepcion e) {
+//			model.put(&quot;error&quot;, e.getMessage());
+//			return &quot;redirect:/error&quot;;
+//		}
+//		
+//		return &quot;preubasMarco&quot;;
+//	}
+	
+	
+	@RequestMapping(value=&quot;/registrarProject&quot;, method = RequestMethod.POST, produces = &quot;application/json&quot;)
+	@ResponseBody
+//	public Map&lt;String, String&gt; registrarProyecto(Map &lt;String, Object&gt; model, @RequestBody final Proyecto proyecto) {
+	public Map&lt;String, String&gt; registrarProyecto(@RequestBody Map &lt;?, ?&gt; proyecto) {
+<span class="nc" id="L70">		log.debug(&quot;Entrando a ProyectoController.registrarProyecto&quot;);</span>
+		
+		
+<span class="nc" id="L73">		log.debug(proyecto.get(&quot;nombre&quot;));</span>
+<span class="nc" id="L74">		log.debug(proyecto.get(&quot;descripcion&quot;));</span>
+<span class="nc" id="L75">		log.debug(proyecto.get(&quot;roles&quot;));</span>
+		
+<span class="nc" id="L77">		List&lt;String&gt; rolesTemp = new ArrayList&lt;String&gt;();</span>
+		
+<span class="nc" id="L79">		rolesTemp = (List&lt;String&gt;) proyecto.get(&quot;roles&quot;);</span>
+		
+<span class="nc" id="L81">		log.debug(rolesTemp.get(0));</span>
+		
+<span class="nc" id="L83">		log.debug(proyecto.get(&quot;correoLider&quot;));</span>
+<span class="nc" id="L84">		log.debug(proyecto.get(&quot;correoDesigners&quot;));</span>
+<span class="nc" id="L85">		log.debug(proyecto.get(&quot;correoAnalyst&quot;));</span>
+<span class="nc" id="L86">		log.debug(proyecto.get(&quot;correoDevelopers&quot;));</span>
+<span class="nc" id="L87">		log.debug(proyecto.get(&quot;correoTester&quot;));</span>
+		
+<span class="nc" id="L89">		Map &lt;String, String&gt; JSON = new HashMap&lt;String, String&gt;();</span>
+		
+		try {
+<span class="nc" id="L92">			Proyecto regreso = proyectoService.alta(proyecto);</span>
+<span class="nc" id="L93">			JSON.put(&quot;exito&quot;, &quot;exito al registrar proyecto&quot;);</span>
+<span class="nc" id="L94">		} catch (AppExcepcion e) {</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">			switch (e.getMessage()) {</span>
+			case Error.MAL_NOM_PROYECTO:
+<span class="nc" id="L97">				JSON.put(&quot;errorAlRegistrar&quot;, &quot;No se logro registrar tu proyecto&quot;);</span>
+<span class="nc" id="L98">				return JSON;</span>
+			
+			case Error.MAL_DES_PROYECTO:
+<span class="nc" id="L101">				JSON.put(&quot;errorAlRegistrar&quot;, &quot;No se logro registrar tu proyecto&quot;);</span>
+<span class="nc" id="L102">				return JSON;</span>
+				
+			case Error.MAL_ROLES:
+<span class="nc" id="L105">				JSON.put(&quot;errorAlRegistrar&quot;, &quot;No se logro registrar tu proyecto&quot;);</span>
+<span class="nc" id="L106">				return JSON;</span>
+				
+			default:
+				break;
+			}
+<span class="nc" id="L111">		}</span>
+		
+		
+		//return new ModelAndView(&quot;action&quot;, model);
+		
+<span class="nc" id="L116">		return JSON;</span>
+	}
+	
+//	@GetMapping(&quot;/regProyecto&quot;)
+//	public String regProyecto(Map &lt;String, Object&gt; model) {
+//		
+//
+//		
+//	log.debug(&quot;Entrando al metodo ProyectoController.obtenerUsuarios********************************************************&quot;);
+//	List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//	try {
+//		usuarios = usuarioService.findUsuarios();
+//		
+//		model.put(&quot;usuarios&quot;, usuarios);
+//	} catch (AppExcepcion e) {
+//		model.put(&quot;error&quot;, e.getMessage());
+//		return &quot;redirect:/error&quot;;
+//	}
+//	log.debug(&quot;return en proyectoController********************************************************&quot;);
+//		return &quot;registrarProyecto&quot;;
+//		
+//	}
+//	
+//	@GetMapping(&quot;/registrar&quot;)
+//	public String registrar(Map &lt;String, Object&gt; model, @RequestParam(&quot;pagina&quot;) String pagina) {
+//		
+//
+//		
+//	log.debug(&quot;Entrando al metodo ProyectoController.obtenerUsuarios********************************************************&quot;);
+//	List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+////	try {
+//////		usuarios = usuarioService.findUsuarios();
+////		
+//////		model.put(&quot;usuarios&quot;, usuarios);
+////	} catch (AppExcepcion e) {
+////		model.put(&quot;error&quot;, e.getMessage());
+////		return &quot;redirect:/error&quot;;
+////	}
+//	
+//	model.put(&quot;current&quot;, pagina);
+//	String current = pagina;
+//	
+//	
+//
+//	log.debug(&quot;return en proyectoController********************************************************&quot;);
+//		return &quot;action&quot;;
+//		
+//	}
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2018-06-11T13:09:12" hostname="LAPTOP-5DU0FES0" time="0.285">
+  <properties/>
+  <testcase name="testLoginMalContrasenia" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.093"/>
+  <testcase name="testRegistrarUsuarioMalWeb" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.019"/>
+  <testcase name="testRegistrarUsuarioMalCorreo" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.035"/>
+  <testcase name="testRegistrarUsuarioMalApMaterno" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.007"/>
+  <testcase name="testRegistrarUsuarioMalNombre" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.007"/>
+  <testcase name="testRegistrarUsuarioMalTitulo" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.008"/>
+  <testcase name="testRegistrarUsuario" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.052"/>
+  <testcase name="testRegistrarUsuarioMalHabilidad" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.006"/>
+  <testcase name="testRegistrarUsuarioMalTelefono" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.006"/>
+  <testcase name="testLoginMalCorreo" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.028"/>
+  <testcase name="testRegistrarUsuarioMalEdad" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.006"/>
+  <testcase name="testRegistrarUsuarioMalApPaterno" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.005"/>
+  <testcase name="testRegistrarUsuarioMalContrasenia" classname="mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest" time="0.005"/>
+  <system-out><![CDATA[2018-06-11 08:09:10.111  INFO 4956 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest], using SpringBootContextLoader
+2018-06-11 08:09:10.112  INFO 4956 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [mx.uacm.reclutaSoft.test.controller.UsuarioControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2018-06-11 08:09:10.128  INFO 4956 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2018-06-11 08:09:10.131  INFO 4956 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@49d2b433, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@60ec7de, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@160a478f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@60ebabb9, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3c44f8bb, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4c84e8da, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@8f6e8fa, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@357d3c3e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2e679b0a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@45ce7424, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7ac0e55f, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2680baf5]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2018-06-11 08:09:10.211  INFO 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Starting UsuarioControllerTest on LAPTOP-5DU0FES0 with PID 4956 (started by marco in C:\Users\marco\Documents\gitPruebas\ProyectoReclutaSoft)
+2018-06-11 08:09:10.211 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Running with Spring Boot v1.5.2.RELEASE, Spring v4.3.7.RELEASE
+2018-06-11 08:09:10.211  INFO 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : No active profile set, falling back to default profiles: default
+2018-06-11 08:09:10.216  INFO 4956 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4bc438fa: startup date [Mon Jun 11 08:09:10 CDT 2018]; root of context hierarchy
+2018-06-11 08:09:10.821  INFO 4956 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4c0dd5fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-06-11 08:09:11.007  INFO 4956 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-06-11 08:09:11.007  INFO 4956 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-06-11 08:09:11.067  INFO 4956 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-06-11 08:09:11.116  INFO 4956 --- [    Test worker] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2018-06-11 08:09:11.791  WARN 4956 --- [    Test worker] o.h.j.i.EntityManagerFactoryRegistry     : HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+2018-06-11 08:09:11.791  INFO 4956 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-06-11 08:09:12.059  INFO 4956 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring FrameworkServlet ''
+2018-06-11 08:09:12.059  INFO 4956 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
+2018-06-11 08:09:12.214  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/registrarProyecto/registrarProject],methods=[POST],produces=[application/json]}" onto public java.util.Map<java.lang.String, java.lang.String> mx.uacm.reclutaSoft.controller.proyectoController.registrarProyecto(java.util.Map<?, ?>)
+2018-06-11 08:09:12.215  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/usuarioController/login],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView mx.uacm.reclutaSoft.controller.UsuarioController.login(java.util.Map<java.lang.String, java.lang.Object>,mx.uacm.reclutaSoft.domain.Usuario)
+2018-06-11 08:09:12.215  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/usuarioController/registrarUsuario],methods=[POST]}" onto public java.lang.String mx.uacm.reclutaSoft.controller.UsuarioController.registrarUsuario(java.util.Map<java.lang.String, java.lang.Object>,mx.uacm.reclutaSoft.domain.Usuario,java.util.List<java.lang.String>,java.util.List<java.lang.String>)
+2018-06-11 08:09:12.217  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-06-11 08:09:12.217  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-06-11 08:09:12.234  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.234  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/peticion] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/registro] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/pruebasMarco] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/registrarProyecto] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/pruebasJavier] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/registraProyectoCandidatos] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/action] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/perfil] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.235  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/error] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2018-06-11 08:09:12.249  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-11 08:09:12.249  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-11 08:09:12.272  INFO 4956 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-06-11 08:09:12.311  INFO 4956 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@4bc438fa: startup date [Mon Jun 11 08:09:10 CDT 2018]; root of context hierarchy
+2018-06-11 08:09:12.417  INFO 4956 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 358 ms
+2018-06-11 08:09:12.638  INFO 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Started UsuarioControllerTest in 2.502 seconds (JVM running for 13.428)
+2018-06-11 08:09:12.644 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testLoginMalContrasenia
+2018-06-11 08:09:12.717 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.login
+2018-06-11 08:09:12.717 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.findByEmailAndPassword
+2018-06-11 08:09:12.737 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalWeb
+2018-06-11 08:09:12.749 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.749 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.750 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.750 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.750 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_WEB
+2018-06-11 08:09:12.758 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalCorreo
+2018-06-11 08:09:12.761 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.761 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.761 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.761 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.788 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_CORREO
+2018-06-11 08:09:12.794 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalApMaterno
+2018-06-11 08:09:12.797 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.797 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.797 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.797 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.797 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_AP_MATERNO
+2018-06-11 08:09:12.801 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalNombre
+2018-06-11 08:09:12.804 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.804 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.804 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.804 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.804 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_NOMBRE
+2018-06-11 08:09:12.810 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalTitulo
+2018-06-11 08:09:12.813 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.813 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.814 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.814 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.814 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_GR_ACADEMICO
+2018-06-11 08:09:12.818 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuario
+2018-06-11 08:09:12.819 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.820 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.820 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.820 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+Hibernate: insert into usuario (apellido_materno, apellido_paterno, contrasenia, correo, edad, nombre, reputacion, telefono, titulo, web) values (?, ?,  MD5(?) , ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into habilidad (nombre, puntuacion, tipo, usuario_id) values (?, ?, ?, ?)
+Hibernate: insert into habilidad (nombre, puntuacion, tipo, usuario_id) values (?, ?, ?, ?)
+2018-06-11 08:09:12.869 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalHabilidad
+2018-06-11 08:09:12.872 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.872 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.872 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_HABILIDADES
+2018-06-11 08:09:12.876 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalTelefono
+2018-06-11 08:09:12.878 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.878 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.878 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.878 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.878 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_TELEFONO
+2018-06-11 08:09:12.882 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testLoginMalCorreo
+2018-06-11 08:09:12.883 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.login
+2018-06-11 08:09:12.884 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.findByEmailAndPassword
+2018-06-11 08:09:12.911 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalEdad
+2018-06-11 08:09:12.913 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.913 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.913 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.913 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.913 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_EDAD
+2018-06-11 08:09:12.917 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalApPaterno
+2018-06-11 08:09:12.919 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.919 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.919 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.919 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.919 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_AP_PATERNO
+2018-06-11 08:09:12.923 DEBUG 4956 --- [    Test worker] m.u.r.t.c.UsuarioControllerTest          : Entrando a UsuarioControllerTest.testRegistrarUsuarioMalContrasenia
+2018-06-11 08:09:12.925 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Entrando al metodo UsuarioController.registrarUsuario
+2018-06-11 08:09:12.925 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : Entrando a UsuarioServiceImpl.alta
+2018-06-11 08:09:12.925 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : lenguaje = c
+2018-06-11 08:09:12.925 DEBUG 4956 --- [    Test worker] m.u.r.service.impl.UsuarioServiceImpl    : idioma = ingles
+2018-06-11 08:09:12.925 DEBUG 4956 --- [    Test worker] m.u.r.controller.UsuarioController       : Error MAL_CONTRASENIA
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

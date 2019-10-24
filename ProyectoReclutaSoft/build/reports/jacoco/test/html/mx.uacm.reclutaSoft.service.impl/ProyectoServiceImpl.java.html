@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProyectoServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.service.impl</a> &gt; <span class="el_source">ProyectoServiceImpl.java</span></div><h1>ProyectoServiceImpl.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mx.uacm.reclutaSoft.constantes.Regla;
+import mx.uacm.reclutaSoft.constantes.Error;
+import mx.uacm.reclutaSoft.domain.Proyecto;
+import mx.uacm.reclutaSoft.domain.Rol;
+import mx.uacm.reclutaSoft.domain.Usuario;
+import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
+import mx.uacm.reclutaSoft.persistence.ProyectoRepository;
+import mx.uacm.reclutaSoft.persistence.UsuarioRepository;
+import mx.uacm.reclutaSoft.service.ProyectoService;
+
+@Service
+<span class="fc" id="L23">public class ProyectoServiceImpl implements ProyectoService {</span>
+	
+<span class="fc" id="L25">	private static final Logger log = LogManager.getLogger(ProyectoServiceImpl.class);</span>
+	
+	@Autowired
+	private ProyectoRepository proyectoRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+//	public Proyecto alta(String nombre, String descripcion, ArrayList&lt;Rol&gt; roles) throws AppExcepcion {
+	public Proyecto alta(Map &lt;?, ?&gt; proyecto) throws AppExcepcion {
+	
+<span class="fc" id="L36">		log.debug(&quot;Entrando a ProyectoServiceImpl.alta&quot;);</span>
+		
+<span class="fc" id="L38">		Proyecto project = new Proyecto();</span>
+		
+<span class="fc" id="L40">		String nombre = (String) proyecto.get(&quot;nombre&quot;);</span>
+<span class="fc" id="L41">		String descripcion = (String) proyecto.get(&quot;descripcion&quot;);</span>
+		
+<span class="fc" id="L43">		List&lt;String&gt; rolesTemp = new ArrayList&lt;String&gt;();</span>
+		
+<span class="fc" id="L45">		rolesTemp = (List&lt;String&gt;) proyecto.get(&quot;roles&quot;);</span>
+		
+//		if (proyecto.containsKey(&quot;&quot;)) {
+//			
+//		}
+<span class="fc" id="L50">		List&lt;Usuario&gt; usuariosEnRoles = new ArrayList&lt;Usuario&gt;();</span>
+		
+<span class="fc" id="L52">		String emailLider = (String) proyecto.get(&quot;correoLider&quot;);</span>
+<span class="fc" id="L53">		Usuario usuarioLider = usuarioRepository.findByEmail(emailLider);</span>
+<span class="fc" id="L54">		usuariosEnRoles.add(usuarioLider);</span>
+		
+<span class="fc" id="L56">		String emailDevelopers = (String) proyecto.get(&quot;correoDevelopers&quot;);</span>
+<span class="fc" id="L57">		Usuario usuarioDeveloper = usuarioRepository.findByEmail(emailDevelopers);</span>
+<span class="fc" id="L58">		usuariosEnRoles.add(usuarioDeveloper);</span>
+		
+<span class="fc" id="L60">		String emailDesigners = (String) proyecto.get(&quot;correoDesigners&quot;);</span>
+<span class="fc" id="L61">		Usuario usuarioDesigner = usuarioRepository.findByEmail(emailDesigners);</span>
+<span class="fc" id="L62">		usuariosEnRoles.add(usuarioDesigner);</span>
+		
+<span class="fc" id="L64">		String emailAnalyst = (String) proyecto.get(&quot;correoAnalyst&quot;);</span>
+<span class="fc" id="L65">		Usuario usuarioAnalyst = usuarioRepository.findByEmail(emailAnalyst);</span>
+<span class="fc" id="L66">		usuariosEnRoles.add(usuarioAnalyst);</span>
+		
+<span class="fc" id="L68">		String emailTester = (String) proyecto.get(&quot;correoTester&quot;);</span>
+<span class="fc" id="L69">		Usuario usuarioTester = usuarioRepository.findByEmail(emailTester);</span>
+<span class="fc" id="L70">		usuariosEnRoles.add(usuarioTester);</span>
+		 
+<span class="fc" id="L72">		String emailDuenio = (String) proyecto.get(&quot;correoDuenio&quot;);</span>
+<span class="fc" id="L73">		Usuario usuarioDuenio = usuarioRepository.findByEmail(emailDuenio);</span>
+		
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		for (int i = 0; i &lt; usuariosEnRoles.size(); i++) {</span>
+<span class="fc" id="L76">			log.debug(usuariosEnRoles.get(i));</span>
+		}
+		
+//		ArrayList&lt;Rol&gt; roles = new ArrayList&lt;Rol&gt;();
+<span class="fc" id="L80">		int i = 0;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		for (String rolString : rolesTemp) {</span>
+<span class="fc" id="L82">			Rol rol = new Rol();</span>
+<span class="fc" id="L83">			rol.setNombre(rolString);</span>
+//			log.debug(rolString);
+<span class="fc" id="L85">			rol.setUsuario(usuariosEnRoles.get(i));</span>
+<span class="fc" id="L86">			project.setRol(rol);</span>
+//			roles.add(rol);
+<span class="fc" id="L88">			i++;</span>
+<span class="fc" id="L89">		}</span>
+		
+		
+		
+<span class="fc" id="L93">		project.setUsuario(usuarioDuenio);</span>
+<span class="fc" id="L94">		project.setNombre(nombre);</span>
+<span class="fc" id="L95">		project.setDescripcion(descripcion);</span>
+//		project.setRoles(roles);
+		
+		
+		
+		
+		
+		
+		
+//		Proyecto proyecto = null;
+				
+<span class="fc bfc" id="L106" title="All 4 branches covered.">		if (project.getNombre().length() &lt; Regla.MIN_NOM_PROYECTO || project.getNombre().length() &gt; Regla.MAX_NOM_PROYECTO) {</span>
+<span class="fc" id="L107">			throw new AppExcepcion(Error.MAL_NOM_PROYECTO, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L110" title="All 4 branches covered.">		if (project.getDescripcion().length() &lt; Regla.MIN_DES_PROYECTO || project.getDescripcion().length() &gt; Regla.MAX_DES_PROYECTO) {</span>
+<span class="fc" id="L111">			throw new AppExcepcion(Error.MAL_DES_PROYECTO, Error.NO_LONGITUD);</span>
+		}
+				
+<span class="fc bfc" id="L114" title="All 2 branches covered.">		if (project.getRoles().isEmpty()) {</span>
+<span class="fc" id="L115">			throw new AppExcepcion(Error.MAL_ROLES, Error.NO_NULL);</span>
+		}
+				
+//		proyecto = new Proyecto();
+//		proyecto.setNombre(nombre);
+//		proyecto.setDescripcion(descripcion);
+//		proyecto.setRoles(roles);
+				
+<span class="fc" id="L123">		proyectoRepository.save(project);		</span>
+<span class="fc" id="L124">		return project;</span>
+	}	
+	
+	
+	//falta probar
+//	public List&lt;Proyecto&gt; findPoryectos() throws AppExcepcion {
+//		log.debug(&quot;Entrando a ProyectoServiceImpl.findPoryectos&quot;);
+//		
+//		List&lt;Proyecto&gt; proyectos = new ArrayList&lt;Proyecto&gt;();
+//		
+//		proyectos = proyectoRepository.findAllProjects();
+//		
+//		return proyectos;
+//	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

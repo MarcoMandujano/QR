@@ -1,0 +1,58 @@
+apply plugin: 'java-library'
+apply plugin: 'eclipse'
+apply plugin: "jacoco"
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+   manifest {
+       attributes 'Implementation-Title': 'Gradle Quickstart',
+                  'Implementation-Version': version
+   }
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'ProyectoReclutaSoft'
+	version = '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.thymeleaf:thymeleaf-spring4")
+    compile("mysql:mysql-connector-java:5.1.31")
+    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
+   	testCompile("junit:junit")
+   	compile("org.dbunit:dbunit:2.5.2")
+   	compile("org.webjars:bootstrap:4.1.0")
+    compile("org.webjars:jquery:3.1.1")
+    compile("org.webjars:datatables:1.10.16")
+   compile group: 'org.webjars.bower', name: 'datatables.net-select', version: '1.0.1'
+   compile group: 'org.webjars', name: 'bootstrap-select', version: '1.4.2'
+}
+
+/*jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+*/

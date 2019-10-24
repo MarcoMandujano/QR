@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.domain</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.ColumnTransformer;
+
+@Entity
+<span class="fc" id="L19">public class Usuario {</span>
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
+//	@ManyToOne
+//	@JoinColumn(name=&quot;rol_id&quot;)
+//	private Rol rol;
+	
+<span class="fc" id="L28">	@OneToMany(mappedBy=&quot;usuario&quot;, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)</span>
+	private List&lt;Rol&gt; roles = new ArrayList&lt;Rol&gt;();
+	
+	private String nombre;
+	
+	private String apellidoPaterno;
+	
+	private String apellidoMaterno;
+	
+	private String correo;
+	
+	@ColumnTransformer(write=&quot; MD5(?) &quot;, read=&quot; MD5(?) &quot;)
+	private String contrasenia;
+	
+	@OneToMany(mappedBy=&quot;usuario&quot;, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+	private List&lt;Proyecto&gt; participaciones;
+	
+	private String telefono;
+	
+	@OneToMany(mappedBy=&quot;usuario&quot;, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+	private List&lt;Habilidad&gt; habilidades;
+	
+	private int edad;
+	
+	private String web;
+	
+	private int reputacion;
+	
+	private String titulo;
+
+	public long getId() {
+<span class="fc" id="L59">		return id;</span>
+	}
+
+	public void setId(long id) {
+<span class="nc" id="L63">		this.id = id;</span>
+<span class="nc" id="L64">	}</span>
+	
+	public List&lt;Rol&gt; getRoles() {
+<span class="nc" id="L67">		return roles;</span>
+	}
+	
+	public void setRoles(List&lt;Rol&gt; roles) {
+<span class="nc" id="L71">		this.roles = roles;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		for (Rol rol : roles) {</span>
+<span class="nc" id="L73">			rol.setUsuario(this);</span>
+<span class="nc" id="L74">		}</span>
+<span class="nc" id="L75">	}</span>
+	
+	public void setRol(Rol rol) {
+<span class="nc" id="L78">		roles.add(rol);</span>
+<span class="nc" id="L79">		rol.setUsuario(this);</span>
+<span class="nc" id="L80">	}</span>
+	
+	public void removeRol(Rol rol) {
+<span class="nc" id="L83">		roles.remove(rol);</span>
+<span class="nc" id="L84">		rol.setUsuario(null);</span>
+<span class="nc" id="L85">	}</span>
+	
+//	public Rol getRol() {
+//		return rol;
+//	}
+//
+//	public void setRol(Rol rol) {
+//		this.rol = rol;
+//	}
+
+	public String getNombre() {
+<span class="fc" id="L96">		return nombre;</span>
+	}
+
+	public void setNombre(String nombre) {
+<span class="fc" id="L100">		this.nombre = nombre;</span>
+<span class="fc" id="L101">	}</span>
+
+	public String getApellidoPaterno() {
+<span class="fc" id="L104">		return apellidoPaterno;</span>
+	}
+
+	public void setApellidoPaterno(String apellidoPaterno) {
+<span class="fc" id="L108">		this.apellidoPaterno = apellidoPaterno;</span>
+<span class="fc" id="L109">	}</span>
+
+	public String getApellidoMaterno() {
+<span class="fc" id="L112">		return apellidoMaterno;</span>
+	}
+
+	public void setApellidoMaterno(String apellidoMaterno) {
+<span class="fc" id="L116">		this.apellidoMaterno = apellidoMaterno;</span>
+<span class="fc" id="L117">	}</span>
+
+	public String getCorreo() {
+<span class="fc" id="L120">		return correo;</span>
+	}
+
+	public void setCorreo(String correo) {
+<span class="fc" id="L124">		this.correo = correo;</span>
+<span class="fc" id="L125">	}</span>
+
+	public String getContrasenia() {
+<span class="fc" id="L128">		return contrasenia;</span>
+	}
+
+	public void setContrasenia(String contrasenia) {
+<span class="fc" id="L132">		this.contrasenia = contrasenia;</span>
+<span class="fc" id="L133">	}</span>
+
+	public List&lt;Proyecto&gt; getParticipaciones() {
+<span class="nc" id="L136">		return participaciones;</span>
+	}
+
+	public void setParticipaciones(List&lt;Proyecto&gt; participaciones) {
+<span class="nc" id="L140">		this.participaciones = participaciones;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">		for (Proyecto proyecto : participaciones) {</span>
+<span class="nc" id="L142">			proyecto.setUsuario(this);</span>
+<span class="nc" id="L143">		}</span>
+<span class="nc" id="L144">	}</span>
+	
+	public void setParticipacion(Proyecto proyecto) {
+<span class="nc" id="L147">		participaciones.add(proyecto);</span>
+<span class="nc" id="L148">		proyecto.setUsuario(this);</span>
+<span class="nc" id="L149">	}</span>
+	
+	public void removeParticipacion(Proyecto proyecto) {
+<span class="nc" id="L152">		participaciones.remove(proyecto);</span>
+<span class="nc" id="L153">		proyecto.setUsuario(null);</span>
+<span class="nc" id="L154">	}</span>
+	
+	public String getTelefono() {
+<span class="fc" id="L157">		return telefono;</span>
+	}
+
+	public void setTelefono(String telefono) {
+<span class="fc" id="L161">		this.telefono = telefono;</span>
+<span class="fc" id="L162">	}</span>
+
+	public List&lt;Habilidad&gt; getHabilidades() {
+<span class="fc" id="L165">		return habilidades;</span>
+	}
+
+	public void setHabilidades(List&lt;Habilidad&gt; habilidades) {
+<span class="fc" id="L169">		this.habilidades = habilidades;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">		for (Habilidad habilidad : habilidades) {</span>
+<span class="fc" id="L171">			habilidad.setUsuario(this);</span>
+<span class="fc" id="L172">		}</span>
+<span class="fc" id="L173">	}</span>
+	
+	public void setHabilidad(Habilidad habilidad) {
+<span class="nc" id="L176">		habilidades.add(habilidad);</span>
+<span class="nc" id="L177">		habilidad.setUsuario(this);</span>
+<span class="nc" id="L178">	}</span>
+	
+	public void removeHabilidad(Habilidad habilidad) {
+<span class="nc" id="L181">		habilidades.remove(habilidad);</span>
+<span class="nc" id="L182">		habilidad.setUsuario(null);</span>
+<span class="nc" id="L183">	}</span>
+	
+	public int getEdad() {
+<span class="fc" id="L186">		return edad;</span>
+	}
+
+	public void setEdad(int edad) {
+<span class="fc" id="L190">		this.edad = edad;</span>
+<span class="fc" id="L191">	}</span>
+
+	public String getWeb() {
+<span class="fc" id="L194">		return web;</span>
+	}
+
+	public void setWeb(String web) {
+<span class="fc" id="L198">		this.web = web;</span>
+<span class="fc" id="L199">	}</span>
+
+	public int getReputacion() {
+<span class="fc" id="L202">		return reputacion;</span>
+	}
+
+	public void setReputacion(int reputacion) {
+<span class="fc" id="L206">		this.reputacion = reputacion;</span>
+<span class="fc" id="L207">	}</span>
+
+	public String getTitulo() {
+<span class="fc" id="L210">		return titulo;</span>
+	}
+
+	public void setTitulo(String titulo) {
+<span class="fc" id="L214">		this.titulo = titulo;</span>
+<span class="fc" id="L215">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

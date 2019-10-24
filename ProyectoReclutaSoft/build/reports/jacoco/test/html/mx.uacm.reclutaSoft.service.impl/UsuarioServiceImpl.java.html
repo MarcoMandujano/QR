@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.service.impl</a> &gt; <span class="el_source">UsuarioServiceImpl.java</span></div><h1>UsuarioServiceImpl.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.assertj.core.util.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mx.uacm.reclutaSoft.constantes.Regla;
+import mx.uacm.reclutaSoft.constantes.Error;
+import mx.uacm.reclutaSoft.domain.Habilidad;
+import mx.uacm.reclutaSoft.domain.Proyecto;
+import mx.uacm.reclutaSoft.domain.Usuario;
+import mx.uacm.reclutaSoft.excepcion.AppExcepcion;
+import mx.uacm.reclutaSoft.persistence.UsuarioRepository;
+import mx.uacm.reclutaSoft.service.UsuarioService;
+
+@Service
+<span class="fc" id="L22">public class UsuarioServiceImpl implements UsuarioService {</span>
+	
+<span class="fc" id="L24">	private static final Logger log = LogManager.getLogger(UsuarioServiceImpl.class);</span>
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+//	public Usuario alta(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contrasenia, 
+//			String telefono, List&lt;Habilidad&gt; habilidades, int edad, String web, String titulo) throws AppExcepcion {
+	public Usuario alta(Usuario usuario, List&lt;String&gt; lenguajes, List&lt;String&gt; idiomas) throws AppExcepcion {	
+	
+<span class="fc" id="L33">		log.debug(&quot;Entrando a UsuarioServiceImpl.alta&quot;);</span>
+			
+		
+<span class="fc" id="L36">		List&lt;Habilidad&gt; habilidadesTemp = new ArrayList&lt;Habilidad&gt;();</span>
+		
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		for (String lenguaje : lenguajes) {</span>
+<span class="fc" id="L39">			log.debug(&quot;lenguaje = &quot; + lenguaje);</span>
+<span class="fc" id="L40">			Habilidad habilidad = new Habilidad();</span>
+<span class="fc" id="L41">			habilidad.setTipo(&quot;Lenguaje de programacion&quot;);</span>
+<span class="fc" id="L42">			habilidad.setNombre(lenguaje);</span>
+<span class="fc" id="L43">			habilidad.setPuntuacion(0);</span>
+<span class="fc" id="L44">			habilidadesTemp.add(habilidad);</span>
+<span class="fc" id="L45">		}</span>
+		
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		for (String idioma : idiomas) {</span>
+<span class="fc" id="L48">			log.debug(&quot;idioma = &quot; + idioma);</span>
+<span class="fc" id="L49">			Habilidad habilidad = new Habilidad();</span>
+<span class="fc" id="L50">			habilidad.setTipo(&quot;Idioma&quot;);</span>
+<span class="fc" id="L51">			habilidad.setNombre(idioma);</span>
+<span class="fc" id="L52">			habilidad.setPuntuacion(0);</span>
+<span class="fc" id="L53">			habilidadesTemp.add(habilidad);</span>
+<span class="fc" id="L54">		}</span>
+<span class="fc" id="L55">		usuario.setHabilidades(habilidadesTemp);</span>
+//		usuario.setRol(null);		
+		
+//		Usuario usuario = null;
+		
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (!(usuario.getNombre().matches(Regla.REGEX_NOMBRE))) {</span>
+<span class="fc" id="L61">			throw new AppExcepcion(Error.MAL_NOMBRE, Error.NO_LETRAS_ESPACIOS);</span>
+		}
+		
+<span class="fc bfc" id="L64" title="All 4 branches covered.">		if (usuario.getNombre().length() &lt; Regla.LONG_MIN_NOMBRE || usuario.getNombre().length() &gt; Regla.LONG_MAX_NOMBRE) {</span>
+<span class="fc" id="L65">			throw new AppExcepcion(Error.MAL_NOMBRE, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		if (!(usuario.getApellidoPaterno().matches(Regla.REGEX_AP_PATERNO))) {</span>
+<span class="fc" id="L69">			throw new AppExcepcion(Error.MAL_AP_PATERNO, Error.NO_LETRAS);</span>
+		}
+		
+<span class="fc bfc" id="L72" title="All 4 branches covered.">		if (usuario.getApellidoPaterno().length() &lt; Regla.LONG_MIN_PATERNO || usuario.getApellidoPaterno().length() &gt; Regla.LONG_MAX_PATERNO) {</span>
+<span class="fc" id="L73">			throw new AppExcepcion(Error.MAL_AP_PATERNO, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L76" title="All 2 branches covered.">		if (!(usuario.getApellidoMaterno().matches(Regla.REGEX_AP_MATERNO))) {</span>
+<span class="fc" id="L77">			throw new AppExcepcion(Error.MAL_AP_MATERNO, Error.NO_LETRAS);</span>
+		}
+		
+<span class="fc bfc" id="L80" title="All 4 branches covered.">		if (usuario.getApellidoMaterno().length() &lt; Regla.LONG_MIN_MATERNO || usuario.getApellidoMaterno().length() &gt; Regla.LONG_MAX_MATERNO) {</span>
+<span class="fc" id="L81">			throw new AppExcepcion(Error.MAL_AP_MATERNO, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		if (!(usuario.getCorreo().matches(Regla.REGEX_CORREO))) {</span>
+<span class="fc" id="L85">			throw new AppExcepcion(Error.MAL_CORREO, Error.NO_CORREO);</span>
+		}
+		
+<span class="fc bfc" id="L88" title="All 4 branches covered.">		if (usuario.getContrasenia().length() &lt; Regla.LONG_MIN_CONTRASENIA || usuario.getContrasenia().length() &gt; Regla.LONG_MAX_CONTRASENIA) {</span>
+<span class="fc" id="L89">			throw new AppExcepcion(Error.MAL_CONTRASENIA, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (!(usuario.getTelefono().matches(Regla.REGEX_TELEFONO))) {</span>
+<span class="fc" id="L93">			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_NUMEROS);</span>
+		}
+		
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (usuario.getTelefono().length() != Regla.LONG_TELEFONO) {</span>
+<span class="fc" id="L97">			throw new AppExcepcion(Error.MAL_TELEFONO, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		if (usuario.getHabilidades().isEmpty()) {</span>
+<span class="fc" id="L101">			throw new AppExcepcion(Error.MAL_HABILIDADES, Error.NO_NULL);</span>
+		}
+		
+<span class="fc bfc" id="L104" title="All 4 branches covered.">		if (usuario.getEdad() &lt; Regla.MIN_EDAD || usuario.getEdad() &gt; Regla.MAX_EDAD) {</span>
+<span class="fc" id="L105">			throw new AppExcepcion(Error.MAL_EDAD, Error.NO_RANGO);</span>
+		}
+		
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		if (!(usuario.getWeb().matches(Regla.REGEX_WEB))) {</span>
+<span class="fc" id="L109">			throw new AppExcepcion(Error.MAL_WEB, Error.NO_WEB);</span>
+		}
+		
+<span class="fc bfc" id="L112" title="All 2 branches covered.">		if (!Regla.GRADO_ACADEMICO.contains(usuario.getTitulo())) {</span>
+<span class="fc" id="L113">			throw new AppExcepcion(Error.MAL_GR_ACADEMICO, Error.NO_ENCONTRADO);</span>
+		}
+		
+//		usuario = new Usuario();
+//		usuario.setNombre(nombre);
+//		usuario.setApellidoPaterno(apellidoPaterno);
+//		usuario.setApellidoMaterno(apellidoMaterno);
+//		usuario.setCorreo(correo);
+//		usuario.setContrasenia(contrasenia);
+//		usuario.setTelefono(telefono);
+//		usuario.setHabilidades(habilidades);
+//		usuario.setEdad(edad);
+//		usuario.setWeb(web);
+//		usuario.setTitulo(titulo);
+		
+<span class="fc" id="L128">		Usuario usuarioSalvado = usuarioRepository.save(usuario);		</span>
+<span class="fc" id="L129">		return usuarioSalvado;</span>
+	}
+	
+	public Usuario setReputacion(Usuario usuario, int reputacion) throws AppExcepcion {	
+<span class="fc" id="L133">		log.debug(&quot;Entrando a setReputacion&quot;);</span>
+				
+<span class="fc bfc" id="L135" title="All 4 branches covered.">		if (reputacion &lt; Regla.MIN_REPUTACION || reputacion &gt; Regla.MAX_REPUTACION) {</span>
+<span class="fc" id="L136">			throw new AppExcepcion(Error.MAL_REPUTACION, Error.NO_RANGO);</span>
+		}
+		
+<span class="fc" id="L139">		String email = usuario.getCorreo();</span>
+<span class="fc" id="L140">		int columnasAfectadas = 0;</span>
+		
+		
+		
+<span class="fc" id="L144">		log.debug(email);</span>
+<span class="fc" id="L145">		log.debug(&quot;EL update Regreso************************************************************************&quot;);</span>
+		try {
+<span class="fc" id="L147">			columnasAfectadas = usuarioRepository.updateReputacionToUserByEmail(email, reputacion);</span>
+<span class="fc" id="L148">			log.debug(columnasAfectadas);</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">			if (columnasAfectadas == 0) {</span>
+<span class="fc" id="L150">				throw new AppExcepcion(Error.MAL_CONCECT, Error.MAL_CONCECT);</span>
+			} 
+<span class="fc" id="L152">			usuario.setReputacion(reputacion);</span>
+			
+<span class="fc" id="L154">		} catch (Exception e) {</span>
+			
+<span class="fc" id="L156">		}</span>
+		
+		
+		
+		//usuario.setReputacion(reputacion);
+<span class="fc" id="L161">		return usuario;</span>
+	}
+	
+	public Usuario setPartcicipacion(Usuario usuario, Proyecto proyecto) throws AppExcepcion {
+<span class="nc" id="L165">		log.debug(&quot;Entrando a setPartcicipacion&quot;);</span>
+		
+<span class="nc" id="L167">		return usuario;</span>
+	}
+	
+	public Usuario findUsuario(String correo) throws AppExcepcion {
+<span class="fc" id="L171">		log.debug(&quot;Entrando a findUsuario&quot;);</span>
+		
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">		if (!(correo.matches(Regla.REGEX_CORREO))) {</span>
+<span class="nc" id="L174">			throw new AppExcepcion(Error.MAL_CORREO, Error.NO_CORREO);</span>
+		}
+		
+<span class="fc" id="L177">		Usuario usuario = usuarioRepository.findByEmail(correo);</span>
+		
+<span class="fc" id="L179">		return usuario;</span>
+	}
+	
+	//falta hacer test
+	public Usuario findByEmailAndPassword(String correo, String contrasenia) throws AppExcepcion {
+<span class="fc" id="L184">		log.debug(&quot;Entrando a UsuarioServiceImpl.findByEmailAndPassword&quot;);</span>
+		
+<span class="fc bfc" id="L186" title="All 2 branches covered.">		if (!(correo.matches(Regla.REGEX_CORREO))) {</span>
+<span class="fc" id="L187">			throw new AppExcepcion(Error.MAL_CORREO, Error.NO_CORREO);</span>
+		}
+		
+<span class="pc bpc" id="L190" title="3 of 4 branches missed.">		if (contrasenia.length() &lt; Regla.LONG_MIN_CONTRASENIA || contrasenia.length() &gt; Regla.LONG_MAX_CONTRASENIA) {</span>
+			
+<span class="fc" id="L192">			throw new AppExcepcion(Error.MAL_CONTRASENIA, Error.NO_LONGITUD);</span>
+		}
+		
+<span class="nc" id="L195">		Usuario usuario = new Usuario();</span>
+		
+<span class="nc" id="L197">		usuario = usuarioRepository.findByEmailAndPassword(correo, contrasenia);</span>
+		
+				
+<span class="nc" id="L200">		return usuario;</span>
+	}
+	
+	//falta hacer test
+	public List&lt;Usuario&gt; findUsuarios() throws AppExcepcion {
+<span class="fc" id="L205">		log.debug(&quot;Entrando a UsuarioServiceImpl.findUsuarios&quot;);</span>
+		
+//		List&lt;Usuario&gt; usuarios = Lists.newArrayList(usuarioRepository.findAll());
+<span class="fc" id="L208">		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();</span>
+<span class="fc" id="L209">		usuarios = usuarioRepository.findAllUsers();</span>
+		
+<span class="fc" id="L211">		return usuarios;</span>
+	}
+	
+	//falta hacer test
+//	public List&lt;Usuario&gt; findUsersByHabilidadTipoAndNombre(String tipo, String nombreHabilidad) throws AppExcepcion {
+//		log.debug(&quot;Entrando a UsuarioServiceImpl.findUsersByHabilidadTipoAndNombre&quot;);
+//		
+//		if (!(nombreHabilidad.matches(Regla.REGEX_NOM_HABILIDAD))) {
+//			throw new AppExcepcion(Error.MAL_NOM_HABILIDAD, Error.NO_LET_ESP_NUM);
+//		}
+//		
+//		if (nombreHabilidad.length() &lt; Regla.LONG_MIN_HABILIDAD || nombreHabilidad.length() &gt; Regla.LONG_MAX_HABILIDAD) {
+//			throw new AppExcepcion(Error.MAL_NOM_HABILIDAD, Error.NO_LONGITUD);
+//		}
+//		
+//		if (!Regla.TIPO_HABILIDAD.contains(tipo)) {
+//			throw new AppExcepcion(Error.MAL_TP_HABILIDAD, Error.NO_ENCONTRADO);
+//		}
+//		
+//		List&lt;Usuario&gt; usuarios = new ArrayList&lt;Usuario&gt;();
+//		
+//		usuarios = usuarioRepository.findUsersByHabilidadTipoAndNombre(tipo, nombreHabilidad);
+//		
+//		return usuarios;
+//	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content="Javier Monroy Salcedo"></meta>
+    
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{webjars/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{webjars/datatables/1.10.16/css/dataTables.bootstrap4.css}" rel="stylesheet"/> 
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.bootstrap4.min.css"/>
+    
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    
+    <script src="webjars/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="webjars/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    
+   <!--  <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
+    <script src="webjars/datatables.net-select/1.0.1/js/dataTables.select.min.js"></script>
+    
+ 	
+    
+	<title>Registrar proyecto
+	</title>
+</head>
+<body>
+	<div class="conteiner">
+		<!-- Formulario de registro de proyectos -->
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<h1>1. Registrar Proyecto</h1>
+				
+				<form th:action="@{/registrarProyecto/altaProyecto}" method="post">
+					
+			        <div class="form-group input-group-newsletter">
+					    <label for="inputNombreProyecto">Nombre del proyecto</label>
+					    <input type="text" class="form-control" id="inputNombreProyecto" aria-describedby="nombreProyectoHelp"  name="nombreProyecto" placeholder="Ingrese nombre del proyecto..."/>
+					    <small id="nombreProyectoHelp" class="form-text text-muted">Ingresa un nombre cool que cambie el mundo</small>
+  					</div>
+			        
+			        <div class="form-group input-group-newsletter">
+					    <label for="inputDescripcionProyecto">Descripción del proyecto</label>
+					    <textarea class="form-control" id="inputDescripcionProyecto" aria-describedby="DescripcionProyectoHelp"  name="descripcionProyecto" placeholder="Ingrese la descripcion del proyecto..."></textarea>
+					    <small id="descripcionProyectoHelp" class="form-text text-muted">Cuéntanos de que trata tu proyecto. Máximo 255 caracteres</small>
+  					</div>
+			      <h4 class="text-center">Roles</h4>
+			        <div class="row">
+			        	<div class="col-sm-6">			        		
+			                <div class="form-check">
+						      <label class="form-check-label" for="cbLider">
+						        <input type="checkbox" class="form-check-input" id="cbLider" name="roles" value="lider" ></input>Lider de proyecto
+						      </label>
+						    </div>
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbDiseniador">
+						        <input type="checkbox" class="form-check-input" id="cbDiseniador" name="roles" value="deseniador" ></input>Diseñador
+						      </label>
+						    </div>
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbTester">
+						        <input type="checkbox" class="form-check-input" id="cbTester" name="roles" value="analista" ></input>Analista
+						      </label>
+						    </div>
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbTester">
+						        <input type="checkbox" class="form-check-input" id="cbTester" name="roles" value="tester" ></input>Tester
+						      </label>
+						    </div>
+			        	</div>
+			        	<div class="col-sm-6">
+			        		
+			        	</div>
+			        </div>
+			        <div class="text-center">
+			            <button class="btn btn-secondary" type="submit" name="enviar" value="entrar">Registrar proyecto</button>
+			        </div>
+				</form>
+				
+				
+				<hr></hr>
+				<div class="row">
+					
+					<h1>2. Reclutando personal</h1>
+				</div>
+				<div class="row">
+				<div class="col-sm-12">.
+					<h2>Lider de proyecto</h2>
+					<br></br>
+				
+					<div id="liderChoice">
+						
+					</div>
+					 <!-- <div id="liderList">
+						<table class="table table-bordered" id="tbLiderList" style="width:100%">
+						  <thead>
+						    <tr>
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">Experiencia</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      
+						      <td>Mark Muños Santos</td>
+						      <td>5</td>
+						    <td>6</td>
+						    </tr>
+						    <tr>
+						      
+						      <td>Jacob Martines Ageola</td>
+						      <td>4</td>
+						      <td>6</td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+					</div>  -->
+					
+					 <!-- <a th:href="@{/usuarioController/registrarProyecto}" class="badge badge-info">Ver candidatos</a> <br></br> -->
+					 
+					<div id="liderList2">
+						<table class="table table-bordered" id="tbLiderList2" style="width:100%">
+						  <thead>
+						    <tr>
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">correo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usuario : ${usuarios}">
+						      
+						      <td th:text="${usuario.Nombre}"></td>
+						      <td th:text="${usuario.reputacion}"></td>
+						      <td th:text="${usuario.correo}"></td>
+						    
+						    </tr>
+						   
+						    
+						  </tbody>
+						</table>
+					</div> 
+					</div>
+					</div>
+				  <div class="row">
+					<h2>diseñadores</h2>
+					<div id="diseniadoresChoice"></div>
+					<div id="diseniadoresList"></div>
+					
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+	</div>
+	<!-- Jquery y Boostrap scripts -->
+	
+    <script type="text/javascript" src="js/regProjectScripts.js"></script>
+</body>
+</html>

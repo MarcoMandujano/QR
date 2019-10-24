@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content="Javier Monroy Salcedo"></meta>
+  
+   <link href="https://unpkg.com/ionicons@4.1.2/dist/css/ionicons.min.css" rel="stylesheet"/>
+   <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>  
+    <script src="../../webjars/jquery/3.1.1/jquery.min.js"></script>   
+     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"/>  
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{../../webjars/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet"/>
+   <link th:href="@{../../webjars/datatables/1.10.16/css/dataTables.bootstrap4.css}" rel="stylesheet"/>
+    <link th:href="@{../../webjars/bootstrap-select/1.4.2/bootstrap-select.min.css}" rel="stylesheet"/>
+    
+	<title>Planea
+	</title>
+	
+	<script type="text/javascript">
+	var listaUsuarios=null;
+		
+		$( document ).ready(function() {
+			$(".secciones").hide();
+			
+			
+			mostrar = function (id) {
+				
+				$(".secciones").hide();
+				
+				switch(id) {
+					case 'registroPerfil':
+						$('#liPerfil').removeClass( "nav-item active" ).addClass( "nav-item active" );
+						$('#liRegistraProyectos').removeClass( "nav-item active" ).addClass( "nav-item" );
+					break;
+					
+					case 'registroProyecto':
+						$('#liPerfil').removeClass( "nav-item active" ).addClass( "nav-item" );
+						$('#liRegistraProyectos').removeClass( "nav-item active" ).addClass( "nav-item active" );
+					break;
+				}
+				
+				$("#"+id).show();
+			}
+			
+			$("#registroPerfil").show();
+			
+	    });
+		
+		
+		
+	</script>
+	<style type="text/css">
+		select.form-control {
+  -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+}
+	body{padding-top:30px;}
+
+		
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        	<a class="navbar-brand" href="#">Planea</a>
+            	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            		<span class="navbar-toggler-icon"></span>
+            	</button>
+            
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                	<ul class="navbar-nav mr-auto">
+                  		<!-- <li class="nav-item active"> -->
+                  		<li class="nav-item" id="liPerfil">
+                    		<a class="nav-link" href="#" id="perfil" onclick="mostrar('registroPerfil')">Perfil</a>
+                  		</li>
+                  		<li class="nav-item" id="liRegistraProyectos">
+                    		<a class="nav-link" href="#" id="registrar"  onclick="mostrar('registroProyecto')">Registrar Poryectos</a>
+                  		</li>
+                	</ul>
+                	 <form class="form-inline my-2 my-lg-0" th:action="@{/usuarioController/logout}" method="get">
+                  		
+                  		
+               	
+               		<a class="navbar-brand" >Logueado como: </a><a class="navbar-brand" th:text="${nombreUsuario}"></a><button class="btn btn-secondary"  type="submit">Salir</button>
+				</form> 
+              	</div>
+              	
+		</nav>
+     </div>
+	
+	<!-- Conteiner para perfil -->	
+		
+	<div class="container secciones" id="registroPerfil">
+		<h1 class="display-3 text-success"></h1>
+		<h2>Información de usuario</h2>
+		<hr/>
+		<div class="row">
+			<div class="col-sm-12">
+				<h6>Nombre: </h6><p th:text="${nombreUsuario} + ' '+ ${apellidoPaternoUsuario}+ ' ' +  ${apellidoMaternoUsuario}"></p>
+				<h6>Título: </h6><p th:text="${tituloUsuario}"></p>
+				<h6>WebSite: </h6><p th:text="${webSiteUsuario}"></p>
+				<h6>Reputación: </h6><p th:text="${reputacionUsuario}"></p>
+				
+			
+			</div>
+			
+			<h2>Proyectos asociados</h2>
+		<hr/>
+		</div>
+		
+	</div>
+		
+	<!-- Conteiner para registro de proyectos -->
+	
+	<div class="container secciones" id="registroProyecto">
+	
+		<!-- Formulario de registro de proyectos -->
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<h1>1. Registrar Proyecto</h1>
+				
+				<form ><!-- th:action="@{/registrarProyecto/altaProyecto}" method="post" -->
+					
+			        <div class="form-group input-group-newsletter">
+					    <label for="inputNombreProyecto">Nombre del proyecto</label>
+					    <input type="text" class="form-control" id="inputNombreProyecto" aria-describedby="nombreProyectoHelp"  name="nombreProyecto" placeholder="Ingrese nombre del proyecto..." />
+					    <small id="nombreProyectoHelp" class="form-text text-muted">Ingresa un nombre cool que cambie el mundo</small>
+  					</div>
+			        
+			        <div class="form-group input-group-newsletter">
+					    <label for="inputDescripcionProyecto">Descripción del proyecto</label>
+					    <textarea class="form-control" id="inputDescripcionProyecto" aria-describedby="DescripcionProyectoHelp"  name="descripcionProyecto" placeholder="Ingrese la descripcion del proyecto..." th:required="required"></textarea>
+					    <small id="descripcionProyectoHelp" class="form-text text-muted">Cuéntanos de que trata tu proyecto. Máximo 255 caracteres</small>
+  					</div>
+			      <h4 class="text-center">Roles</h4>
+			        <div class="row">
+			        	<div class="col-sm-6">			        		
+			                <div class="form-check">
+						      <label class="form-check-label" for="cbLider">
+						        <input type="checkbox" class="form-check-input" id="cbLider" name="roles" value="lider" ></input>Lider de proyecto
+						      </label>
+						    </div>
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbProgramador">
+						        <input type="checkbox" class="form-check-input" id="cbProgramador" name="roles" value="programador" ></input>Programador
+						      </label>
+						    </div>
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbDiseniador">
+						        <input type="checkbox" class="form-check-input" id="cbDiseniador" name="roles" value="deseniador" ></input>Diseñador
+						      </label>
+						    </div>
+						    
+						   <!--  <div class="form-check">
+						      <label class="form-check-label" for="cbTester">
+						        <input type="checkbox" class="form-check-input" id="cbTester" name="roles" value="analista" ></input>Analista
+						      </label>
+						    </div> -->
+						    
+						    <div class="form-check">
+						      <label class="form-check-label" for="cbTester">
+						        <input type="checkbox" class="form-check-input" id="cbTester" name="roles" value="tester" ></input>Tester
+						      </label>
+						    </div>
+			        	</div>
+			        	<div class="col-sm-6">
+			        		
+			        	</div>
+			        </div>
+			
+				
+				<hr></hr>
+				<div class="row" >
+					
+					<h1>2. Reclutando personal</h1>
+				</div>
+				<div class="row" id="divLider">
+				<div class="col-sm-12">
+					<h2>Lider de proyecto</h2>
+					
+					<!-- <input name="liderProyecto" id="tbIdLider" class="form-control" type="text" placeholder="Lider de proyecto" />
+					<p id="pLider"></p> -->
+					
+					
+  					<h5><span class="badge badge-pill badge-secondary" id="badgeNombre">Tu nuevo lider proyecto es...</span></h5>
+  					
+					<div id="liderChoice">
+						
+					</div>
+					
+					
+					<br></br><br></br>
+					
+					<!-- <script  th:inline="javascript">
+					    
+					    console.log([(${usuarios})]);
+					    
+					</script> -->
+					
+					<!--  <a th:href="@{/usuarioController/obtenerUsuarios}" class="badge badge-info">Ver candidatos</a> <br></br> --> 
+					 
+					<div id="liderList2">
+						<table class="table table-bordered" id="tbLiderList2" style="width:100%">
+						  <thead>
+						    <tr>
+						    <!-- <th scope="col">Id</th>  -->
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">correo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usuario : ${usuarios}">
+						       <!-- <td th:text="$(usuario.id)"></td> -->
+						      <td th:text="${usuario.nombre} +' '+ ${usuario.apellidoPaterno} + ' ' + ${usuario.apellidoMaterno}"></td>
+						      <td th:text="${usuario.reputacion}"></td>
+						      <td th:text="${usuario.correo}"></td>
+						    
+						    </tr>					   
+						    
+						  </tbody>
+						</table>
+						
+					</div> 
+					</div>
+					</div>
+				  <div class="row" id="divDesigners">
+				  <div class="col-sm-12">
+				  	<div class="rown">
+					<h2>2. Diseñadores</h2>
+					</div>
+					<div class="row">
+				
+					<h5><span class="badge badge-pill badge-secondary" id="badgeNombre">Tu nuevo equipo de diseño esta integrador por...</span></h5>
+					
+					
+					</div>
+					<div id="diseniadoresChoice"></div>
+					<br></br><br></br>
+					<div id="tbDesignersList2">
+						<table class="table table-bordered" id="tbDisignersList2" style="width:100%">
+						  <thead>
+						    <tr>
+						    <!-- <th scope="col">Id</th>  -->
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">correo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usuario : ${usuarios}">
+						       <!-- <td th:text="$(usuario.id)"></td> -->
+						      <td th:text="${usuario.nombre} +' '+ ${usuario.apellidoPaterno} + ' ' + ${usuario.apellidoMaterno}"></td>
+						      <td th:text="${usuario.reputacion}"></td>
+						      <td th:text="${usuario.correo}"></td>
+						    
+						    </tr>
+						   
+						    
+						  </tbody>
+						</table>
+						
+					</div> 
+					</div>
+					
+				</div>
+				<div class="row" id="divDevelopers">
+				  <div class="col-sm-12">
+				  	<div class="rown">
+					<h2>2. Programadores</h2>
+					</div>
+					<div class="row">
+				
+					<h5><span class="badge badge-pill badge-secondary" id="badgeNombre">Tu nuevo equipo de programadores esta integrador por...</span></h5>
+					
+					
+					</div>
+					<div id="developersChoice"></div>
+					<br></br><br></br>
+					<div id="tbDevelpersList2">
+						<table class="table table-bordered" id="tbDevelopersList2" style="width:100%">
+						  <thead>
+						    <tr>
+						    <!-- <th scope="col">Id</th>  -->
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">correo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usuario : ${usuarios}">
+						       <!-- <td th:text="$(usuario.id)"></td> -->
+						      <td th:text="${usuario.nombre} +' '+ ${usuario.apellidoPaterno} + ' ' + ${usuario.apellidoMaterno}"></td>
+						      <td th:text="${usuario.reputacion}"></td>
+						      <td th:text="${usuario.correo}"></td>
+						      
+						    </tr>
+						  </tbody>
+						</table>
+						
+					</div> 
+					</div>
+					
+				</div>
+				<div class="row" id="divTester">
+				  <div class="col-sm-12">
+				  	<div class="rown">
+					<h2>2. Testers</h2>
+					</div>
+					<div class="row">
+				
+					<h5><span class="badge badge-pill badge-secondary" id="badgeNombre">Tu nuevo equipo de testers esta integrador por...</span></h5>
+					
+					
+					</div>
+					<div id="testersChoice"></div>
+					<br></br><br></br>
+					<div id="tbtestersList2">
+						<table class="table table-bordered" id="tbTestersList2" style="width:100%">
+						  <thead>
+						    <tr>
+						    <!-- <th scope="col">Id</th>  -->
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Reputacion</th>
+						      <th scope="col">correo</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="usuario : ${usuarios}">
+						       <!-- <td th:text="$(usuario.id)"></td> -->
+						      <td th:text="${usuario.nombre} +' '+ ${usuario.apellidoPaterno} + ' ' + ${usuario.apellidoMaterno}"></td>
+						      <td th:text="${usuario.reputacion}"></td>
+						      <td th:text="${usuario.correo}"></td>
+						      
+						    </tr>
+						  </tbody>
+						</table>
+						
+					</div> 
+					</div>
+					
+				</div>
+				<div class="text-center">
+			           <!--  <button class="btn btn-secondary"  name="enviar" value="entrar" onclick="hacerPost()">Registrar proyecto</button> -->
+			        </div>
+				</form>
+				<div class="text-center">
+			            <button class="btn btn-secondary"  name="enviar" value="entrar" onclick="hacerPost()">Registrar proyecto</button>
+			        </div>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>	
+	</div>	
+		
+	<div class="conteiner">
+	<!-- Modal -->
+<div class="modal fade" id="aviso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+		
+	<!-- Jquery y Boostrap scripts -->
+	</div>
+
+	<script src="../../webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>  
+    <script src="../../webjars/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+  	<script src="../../webjars/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../webjars/datatables.net-select/1.0.1/js/dataTables.select.min.js"></script> 	
+    <script type="text/javascript" src="../../js/regProjectScripts.js"></script>
+ 
+</body>
+</html>

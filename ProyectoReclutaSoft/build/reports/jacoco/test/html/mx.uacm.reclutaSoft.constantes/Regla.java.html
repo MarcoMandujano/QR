@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Regla.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProyectoReclutaSoft</a> &gt; <a href="index.source.html" class="el_package">mx.uacm.reclutaSoft.constantes</a> &gt; <span class="el_source">Regla.java</span></div><h1>Regla.java</h1><pre class="source lang-java linenums">package mx.uacm.reclutaSoft.constantes;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.ListUtils;
+
+import com.google.common.collect.ImmutableMap;
+
+<span class="nc" id="L12">public class Regla {</span>
+	public static final String REGEX_NOMBRE = &quot;^[ A-Za-záéíóú]+$&quot;;
+	public static final int LONG_MIN_NOMBRE = 4;
+	public static final int LONG_MAX_NOMBRE = 20;
+	
+	public static final String REGEX_AP_PATERNO = &quot;^[A-Za-záéíóú]+$&quot;;
+	public static final int LONG_MIN_PATERNO = 4;
+	public static final int LONG_MAX_PATERNO = 20;
+	
+	public static final String REGEX_AP_MATERNO = &quot;^[A-Za-záéíóú]+$&quot;;
+	public static final int LONG_MIN_MATERNO = 4;
+	public static final int LONG_MAX_MATERNO = 20;
+	
+	public static final String REGEX_CORREO = &quot;^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$&quot;;
+	
+	public static final int LONG_MIN_CONTRASENIA = 8;
+	public static final int LONG_MAX_CONTRASENIA = 12;
+	
+	public static final String REGEX_TELEFONO = &quot;^[0-9]+$&quot;;
+	public static final int LONG_TELEFONO = 10;
+	
+	public static final String REGEX_NOM_HABILIDAD = &quot;^[ 0-9A-Za-záéíóú]+$&quot;;
+	public static final int LONG_MIN_HABILIDAD = 1;
+	public static final int LONG_MAX_HABILIDAD = 70;
+		
+<span class="fc" id="L37">	public static final List&lt;String&gt; TIPO_HABILIDAD = ListUtils.</span>
+<span class="fc" id="L38">			unmodifiableList(new ArrayList&lt;String&gt;(Arrays.</span>
+<span class="fc" id="L39">					asList(&quot;Idioma&quot;, &quot;Lenguaje de programación&quot;, &quot;Framework&quot;, &quot;otro&quot;)</span>
+					));
+	
+	public static final int MIN_PUNTUACION = 0;
+	public static final int MAX_PUNTUACION = 5;
+	
+	public static final int MIN_EDAD = 18;
+	public static final int MAX_EDAD = 100;
+	
+	public static final String REGEX_WEB = &quot;^(https?://)?(([\\w!~*'().&amp;=+$%-]+: )?[\\w!~*'().&amp;=+$%-]+@)?(([0-9]{1,3}\\.){3}[0-9]{1,3}|([\\w!~*'()-]+\\.)*([\\w^-][\\w-]{0,61})?[\\w]\\.[a-z]{2,6})(:[0-9]{1,4})?((/*)|(/+[\\w!~*'().;?:@&amp;=+$,%#-]+)+/*)$&quot;;
+		
+	public static final int MIN_REPUTACION = 0;
+	public static final int MAX_REPUTACION = 5;
+		
+<span class="fc" id="L53">	public static final List&lt;String&gt; GRADO_ACADEMICO = ListUtils.</span>
+<span class="fc" id="L54">			unmodifiableList(new ArrayList&lt;String&gt;(Arrays.</span>
+<span class="fc" id="L55">					asList(&quot;Estudiante&quot;, &quot;Licenciatura&quot;, &quot;Ingeniería&quot;, &quot;Posgrado&quot;, &quot;Maestría&quot;, &quot;Doctorado&quot;, &quot;otro&quot;)</span>
+					));
+	
+	public static final int MIN_NOM_PROYECTO = 1;
+	public static final int MAX_NOM_PROYECTO = 80;
+			
+	public static final int MIN_DES_PROYECTO = 1;
+	public static final int MAX_DES_PROYECTO = 300;
+	
+<span class="fc" id="L64">	public static final List&lt;String&gt; NOMBRE_ROL = ListUtils.</span>
+<span class="fc" id="L65">			unmodifiableList(new ArrayList&lt;String&gt;(Arrays.</span>
+<span class="fc" id="L66">					asList(&quot;Programador&quot;, &quot;Lider de proyecto&quot;, &quot;Diseñador&quot;, &quot;Analista&quot;, &quot;Tester&quot;)</span>
+					));
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
