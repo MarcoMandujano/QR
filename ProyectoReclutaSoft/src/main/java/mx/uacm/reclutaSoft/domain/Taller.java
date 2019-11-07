@@ -30,7 +30,7 @@ public class Taller {
 	@JoinColumn(name="evento_id")
 	private Evento evento;
 	
-	@OneToOne(mappedBy = "ubicacion", cascade = CascadeType.ALL, 
+	@OneToOne(mappedBy = "taller", cascade = CascadeType.ALL, 
 			  fetch = FetchType.LAZY, optional = false)
 	private Ubicacion ubicacion;
 	

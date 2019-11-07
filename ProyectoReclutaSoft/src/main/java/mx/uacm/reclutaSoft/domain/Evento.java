@@ -26,7 +26,7 @@ public class Evento {
 	private Date fechaInicio;
 	private Date fechaFin;
 	
-	@OneToMany(mappedBy="taller", cascade=CascadeType.ALL, 
+	@OneToMany(mappedBy="evento", cascade=CascadeType.ALL, 
 			   orphanRemoval=true, fetch=FetchType.LAZY)
 	private List<Taller> talleres = new ArrayList<Taller>();
 	
