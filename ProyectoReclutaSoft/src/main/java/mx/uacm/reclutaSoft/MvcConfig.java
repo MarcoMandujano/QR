@@ -24,7 +24,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/action").setViewName("action");
 		registry.addViewController("/perfil").setViewName("perfil");
 		registry.addViewController("/error").setViewName("error");
-		
+		//añadir nuevas paginas aqui
 	}
 	
 	@Override
