@@ -6,11 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-/**
- * Clase que hace algo
- * @author javvm
- *
- */
+
 @Entity
 public class Habilidad {
 	@Id
