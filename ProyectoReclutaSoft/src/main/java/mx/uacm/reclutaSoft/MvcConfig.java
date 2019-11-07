@@ -18,13 +18,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/registro").setViewName("registro");
 		
 		registry.addViewController("/pruebasMarco").setViewName("pruebasMarco");
-		registry.addViewController("/registrarProyecto").setViewName("registrarProyecto");
+		
 		registry.addViewController("/pruebasJavier").setViewName("pruebasJavier");
 		registry.addViewController("/registraProyectoCandidatos").setViewName("registraProyectoCandidatos");
 		registry.addViewController("/action").setViewName("action");
 		registry.addViewController("/perfil").setViewName("perfil");
 		registry.addViewController("/error").setViewName("error");
 		//añadir nuevas paginas aqui
+		registry.addViewController("/registrarProyecto").setViewName("registrarProyecto");
+		//----------------------------------------------------------------------------------------
+		registry.addViewController("/index1").setViewName("index1");
 	}
 	
 	@Override

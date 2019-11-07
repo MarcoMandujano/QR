@@ -1,0 +1,267 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+  <head>
+  	
+  	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+  
+  	
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <title>Inicio</title>
+    <link href="paginas/sticky-footer-navbar.css" rel="stylesheet"/>
+  </head>
+  <body>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="../Proyecto/index.html">Agregar evento</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../Proyecto/paginas/info.html">Lista de eventos</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+    </header>
+
+    <div role="main" class="container">
+      <b><h3 class="mt-5">Evento</h3></b>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Nombre evento</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+      </div>
+      <b><h3 class="mt-5">DescripciÃ³n del evento</h3></b>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Describe el evento</span>
+        </div>
+        <textarea class="form-control" aria-label="DescripEvento"></textarea>
+      </div>
+      <b><h3 class="mt-5">UbicaciÃ³n</h3></b>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Plantel</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Salon</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion de ubicaciÃ³n</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <b><h3 class="mt-5">Fecha de evento</h3></b>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <p>Introdusca cuando inicia y cuando termina el evento</p>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Fecha inicio</span>
+              </div>
+              <input class="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Fecha termino</span>
+              </div>
+              <input class="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+              <p>A que hora comineza el evento y  a que hora termina</p>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Hora de inicio</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Hora de termino</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <b><h3 class="mt-5">Talleres</h3></b>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Nombre del taller</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre del tallerista</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion del taller</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha del taller</span>
+                  </div>
+                  <input class="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+                </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Hora de inicio del taller</span>
+                </div>
+                <input class="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Hora de termino del taller</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+      <div class="container">
+          <p>Agregar ubicaciÃ³n del taller</p>
+          <div class="row">
+            <div class="col-sm">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Plantel</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+                </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Salon</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion del taller </span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group" style="text-align:right">
+        <button type="button" class="btn btn-primary" onclick="agregarFila()">Agregar taller</button>
+        <button type="button" class="btn btn-danger" onclick="eliminarFila()">Eliminar ultimo evento</button>
+      </div>
+      <div class="container">
+        <div class="row">
+          <table border="1" class="table" id="tablaprueba">
+            <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Tallerista</th>
+                <th>DescripciÃ³n taller</th>
+                <th>Fecha inicio</th>
+                <th>Fecha termino</th>
+                <th>Hora inicio</th>
+                <th>Hora termino</th>
+                <th>UbicaciÃ³n</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+      
+          
+        </div>
+      </div>
+      <div class="form-group" style="text-align:right">
+        <button type="button" class="btn btn-primary" >Guardar evento</button>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Letras habladas UACM SLT.</span>
+        </div>
+    </footer>
+
+  
+ 
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	function agregarFila() {
+		document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<td></td><td></td><td></td><td></td>';
+	}
+	
+	function eliminarFila() {
+		var table = document.getElementById("tablaprueba");
+		var rowCount = table.rows.length;
+		//console.log(rowCount);
+		
+		if (rowCount <= 1) {
+		  alert('No se puede eliminar el encabezado');
+		} else {
+		  table.deleteRow(rowCount -1);
+		}
+		
+	}
+	/*]]>*/
+</script>
+</body>
+
+</html>
+
