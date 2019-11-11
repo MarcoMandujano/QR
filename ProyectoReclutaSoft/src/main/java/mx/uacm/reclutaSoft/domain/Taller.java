@@ -102,6 +102,26 @@ public class Taller {
 	public void setHoraFin(Date horaFin) {
 		this.horaFin = horaFin;
 	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		//this.ubicacion = ubicacion;
+		
+		if (ubicacion == null) {
+            if (this.ubicacion != null) {
+                this.ubicacion.setTaller(null);
+            }
+        }
+        else {
+        	ubicacion.setTaller(this);
+        }
+        this.ubicacion = ubicacion;
+		
+	}
+	
 	
 	
 }

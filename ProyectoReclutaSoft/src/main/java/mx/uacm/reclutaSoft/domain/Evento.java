@@ -44,9 +44,9 @@ public class Evento {
 		return talleres;
 	}
 	
-	public void setTalleres(ArrayList<Taller> talleres) {
-		this.talleres = talleres;
-		for (Taller taller : talleres) {
+	public void setTalleres(List<Taller> talleres2) {
+		this.talleres = talleres2;
+		for (Taller taller : talleres2) {
 			taller.setEvento(this);
 		}
 	}
