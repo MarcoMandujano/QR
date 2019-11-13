@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,6 +19,7 @@ public class Ubicacion {
 	private String descripcion;
 	
 	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "taller_id")
 	private Taller taller;
 	
 	public String getPlantel() {
@@ -38,6 +40,11 @@ public class Ubicacion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+	public Taller getTaller() {
+		return taller;
+	}
+	public void setTaller(Taller taller) {
+		this.taller = taller;
+	}
 	
 }
