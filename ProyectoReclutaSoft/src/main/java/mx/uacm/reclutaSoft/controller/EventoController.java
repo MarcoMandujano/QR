@@ -54,4 +54,38 @@ public class EventoController {
 		return JSON;
 	}
 	
+	@RequestMapping(value="/listarEventos", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public Map<String, String> listarEventos() {
+		log.debug("eventoController.listarEventos");
+		Map <String, String> JSON = new HashMap<String, String>();
+		
+		List<Evento> eventos;
+		
+		try {
+			
+			JSON.put("exito", "se logro aaaaaa");
+			eventos = eventoService.consultarEventos();
+			
+			JSON.put("eventos", eventos.toString());
+			/*
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			for (Map.Entry<String, Object > entry : map.entrySet()) {
+				if (entry.getValue() instanceof String) {
+					JSON.put(entry.getKey(), (String) entry.getValue());
+				}
+			}
+			JSON.put("datos", JSON.toString());
+			*/
+			//JSON.put("eventos", eventos);
+			
+		} catch (Exception e) {
+			log.debug("Error al listar eventos." + e);
+		}
+		
+		return JSON;
+		
+	}
+	
 }

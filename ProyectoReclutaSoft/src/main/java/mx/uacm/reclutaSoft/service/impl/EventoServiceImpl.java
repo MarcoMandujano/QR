@@ -1,9 +1,5 @@
 package mx.uacm.reclutaSoft.service.impl;
 
-<<<<<<< HEAD
-public class EventoServiceImpl {
-
-=======
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -119,5 +115,25 @@ public class EventoServiceImpl implements EventoService {
 		Evento eventoSalvado = eventoRepository.save(eventoASalvar);
 		return eventoSalvado;
 	}
->>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
+
+	public List<Evento> consultarEventos() throws AppExcepcion {
+		List<Evento> eventos = new ArrayList<Evento>();
+		eventos = eventoRepository.findAllEvent();
+		
+		log.debug(eventoRepository.findAll().toString());
+		
+		/*
+		int i = 0;
+		for (Evento evento : eventos) {
+			log.debug("evento nombre: " + evento.getNombreEvento());
+			if (i == 1) {
+				break;
+			}
+			i++;
+		}
+		*/
+		return eventos;
+		
+	}
+	
 }
