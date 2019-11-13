@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Evento {
 	
@@ -26,6 +30,9 @@ public class Evento {
 	private Date fechaInicio;
 	private Date fechaFin;
 	
+	//@JsonIgnore
+	//@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(mappedBy="evento", cascade=CascadeType.ALL, 
 			   orphanRemoval=true, fetch=FetchType.LAZY)
 	private List<Taller> talleres = new ArrayList<Taller>();
@@ -39,11 +46,12 @@ public class Evento {
 //@OneToOne(mappedBy = "ubicacion", cascade = CascadeType.ALL, 
 //	  fetch = FetchType.LAZY, optional = false)
 //private Ubicacion ubicacion;
-	
+	//@JsonIgnore
 	public List<Taller> getTalleres() {
 		return talleres;
 	}
 	
+	//@JsonIgnore
 	public void setTalleres(List<Taller> talleres2) {
 		this.talleres = talleres2;
 		for (Taller taller : talleres2) {

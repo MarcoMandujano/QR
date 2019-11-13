@@ -1,5 +1,6 @@
 package mx.uacm.reclutaSoft.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import mx.uacm.reclutaSoft.domain.Evento;
 import mx.uacm.reclutaSoft.domain.Taller;
@@ -57,17 +62,36 @@ public class EventoController {
 	@RequestMapping(value="/listarEventos", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public Map<String, String> listarEventos() {
+		
+		String eventosString;
+		
 		log.debug("eventoController.listarEventos");
 		Map <String, String> JSON = new HashMap<String, String>();
 		
 		List<Evento> eventos;
 		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		//Gson gson = new Gson();
+		
 		try {
 			
-			JSON.put("exito", "se logro aaaaaa");
+			
+			//JSON.put("exito", "se logro aaaaaa");
 			eventos = eventoService.consultarEventos();
 			
-			JSON.put("eventos", eventos.toString());
+			
+			
+			mapper.writeValue(new File("c:\\test\\staff.json"),eventos); 
+			
+			eventosString = mapper.writeValueAsString(eventos);
+			log.debug("eventosString: " + eventosString);
+			//eventosString = gson.toJson(eventos);
+			
+			
+			JSON.put("eventos", eventosString);
 			/*
 			Map<String, Object> map = new HashMap<String, Object>();
 			
@@ -81,11 +105,12 @@ public class EventoController {
 			//JSON.put("eventos", eventos);
 			
 		} catch (Exception e) {
-			log.debug("Error al listar eventos." + e);
+			log.debug("Error al listar eventos." + e.getMessage());
 		}
 		
 		return JSON;
 		
 	}
+	
 	
 }
