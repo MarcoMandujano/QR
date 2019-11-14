@@ -13,8 +13,6 @@ $(document).ready(function() {
 	
 	listarEventos();
 	
-	
-	
 });
 
 
@@ -78,6 +76,18 @@ function despliegaEventos(data) {
 																		+ '<td>' + eventos[i].descripcion + '</td>'
 																		+ '<td>' + eventos[i].plantel + '</td>'
 															        	+ '<td><a href="/index1"><button type="button" class="btn btn-light" >Detalle de evento</button></a></td>';
+    	console.log(eventos[i].talleres)
+    	var talleres = eventos[i].talleres
+    	for (var j = 0; j < talleres.length; j++) {
+			console.log(talleres[j].id)
+			console.log(talleres[j].nombre)
+			document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
+			$("#inputNombreEvento").text(eventos[i].nombreEvento)
+			$("#inputDescipcionEvento").text(eventos[i].descripcion)
+			$("#inputNombrePlantel").text(eventos[i].plantel)
+			
+		}
+    	
     	
 	}
 	
