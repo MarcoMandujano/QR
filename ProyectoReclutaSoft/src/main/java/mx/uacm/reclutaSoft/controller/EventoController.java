@@ -62,15 +62,10 @@ public class EventoController {
 	@RequestMapping(value="/listarEventos", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public Map<String, String> listarEventos() {
-		
-		String eventosString;
-		
 		log.debug("eventoController.listarEventos");
 		Map <String, String> JSON = new HashMap<String, String>();
-		
+		String eventosString;
 		List<Evento> eventos;
-		
-		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -78,34 +73,20 @@ public class EventoController {
 		
 		try {
 			
-			
-			//JSON.put("exito", "se logro aaaaaa");
+			JSON.put("exito", "se logro aaaaaa");
 			eventos = eventoService.consultarEventos();
 			
-			
-			
-			mapper.writeValue(new File("c:\\test\\staff.json"),eventos); 
+			//mapper.writeValue(new File("c:\\test\\staff.json"),eventos); 
 			
 			eventosString = mapper.writeValueAsString(eventos);
 			log.debug("eventosString: " + eventosString);
 			//eventosString = gson.toJson(eventos);
 			
-			
 			JSON.put("eventos", eventosString);
-			/*
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			for (Map.Entry<String, Object > entry : map.entrySet()) {
-				if (entry.getValue() instanceof String) {
-					JSON.put(entry.getKey(), (String) entry.getValue());
-				}
-			}
-			JSON.put("datos", JSON.toString());
-			*/
-			//JSON.put("eventos", eventos);
 			
 		} catch (Exception e) {
 			log.debug("Error al listar eventos." + e.getMessage());
+			JSON.put("errorAlListar", "Error");
 		}
 		
 		return JSON;
