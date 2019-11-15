@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import mx.uacm.reclutaSoft.domain.Evento;
 import mx.uacm.reclutaSoft.domain.Taller;
 import mx.uacm.reclutaSoft.domain.Ubicacion;
@@ -62,12 +64,19 @@ public class EventoController {
 		
 		List<Evento> eventos;
 		
+		ObjectMapper mapper = new ObjectMapper();
+		
 		try {
+			
+			
 			
 			JSON.put("exito", "se logro aaaaaa");
 			eventos = eventoService.consultarEventos();
 			
-			JSON.put("eventos", eventos.toString());
+			String string = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(eventos);
+			log.debug(string);
+					
+			JSON.put("eventos", string);
 			/*
 			Map<String, Object> map = new HashMap<String, Object>();
 			
@@ -81,7 +90,7 @@ public class EventoController {
 			//JSON.put("eventos", eventos);
 			
 		} catch (Exception e) {
-			log.debug("Error al listar eventos." + e);
+			log.debug("Error al listar eventos. " + e.getMessage());
 		}
 		
 		return JSON;
