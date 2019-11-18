@@ -93,5 +93,30 @@ public class EventoController {
 		
 	}
 	
+	@RequestMapping(value="/listarEvento", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public Map<String, String> listarEventos(@RequestBody Map <?, ?> idEvento) {
+		log.debug("eventoController.listarEvento");
+		//localhost:9090/eventoController/listarEvento?acc={"id":"1"}
+		//localhost:9090/eventoController/listarEvento?data={"id":"1"}
+		
+		
+		Map <String, String> JSON = new HashMap<String, String>();
+		
+		try {
+			
+			log.debug(idEvento.get("id"));
+			
+			JSON.put("exito", "se logro aaaaaa");
+			
+			
+		} catch (Exception e) {
+			log.debug("Error al listar evento********." + e.getMessage());
+			JSON.put("errorAlListar", "Error");
+		}
+		
+		return JSON;
+	}
+	
 	
 }
