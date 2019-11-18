@@ -3,7 +3,8 @@ package mx.uacm.reclutaSoft.service.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +47,11 @@ public class EventoServiceImpl implements EventoService {
 		Date fechaInicio = null;
 		Date fechaFin = null;
 		try {
-			fechaInicio = formatter.parse((String) evento.get("fechaInicio"));
-			fechaFin = formatter.parse((String) evento.get("fechaFin"));
-		} catch (ParseException e) {
+//			fechaInicio = formatter.parse((String) evento.get("fechaInicio"));
+//			fechaFin = formatter.parse((String) evento.get("fechaFin"));
+			fechaInicio = Date.valueOf((String) evento.get("fechaInicio"));
+			fechaFin = Date.valueOf((String) evento.get("fechaFin"));
+		} catch (Exception e) {
 			log.debug("Erro: " + e);
 		}
 		
@@ -79,13 +82,18 @@ public class EventoServiceImpl implements EventoService {
 			taller.setTallerista((String)tallerMap.get("nombreTallerista"));
 			taller.setDescripcion((String)tallerMap.get("descripcionTaller"));
 			Date fechaTaller = null;
-			Date horaInicioTaller = null;
-			Date horaFinTaller = null;
+			Time horaInicioTaller = null;
+			Time horaFinTaller = null;
 			try {
-				fechaTaller = formatter.parse((String) tallerMap.get("fechaTaller"));
-				horaInicioTaller = formatterHour.parse((String) tallerMap.get("horaInicioTaller"));
-				horaFinTaller = formatterHour.parse((String) tallerMap.get("horaFinTaller"));
-			} catch (ParseException e) {
+				//fechaTaller = formatter.parse((String) tallerMap.get("fechaTaller"));
+//				horaInicioTaller = formatterHour.parse((String) tallerMap.get("horaInicioTaller"));
+//				horaFinTaller = formatterHour.parse((String) tallerMap.get("horaFinTaller"));
+				fechaTaller = Date.valueOf((String) tallerMap.get("fechaTaller"));
+				horaInicioTaller = Time.valueOf((String) tallerMap.get("horaInicioTaller"));
+				horaFinTaller = Time.valueOf((String) tallerMap.get("horaFinTaller"));
+				
+				
+			} catch (Exception e) {
 				log.debug("Erro: " + e);
 			}
 			taller.setFechaInicio(fechaTaller);

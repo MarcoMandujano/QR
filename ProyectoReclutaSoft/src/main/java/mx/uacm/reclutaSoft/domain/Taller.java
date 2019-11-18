@@ -1,6 +1,7 @@
 package mx.uacm.reclutaSoft.domain;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,8 +28,8 @@ public class Taller {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Date horaInicio;
-	private Date horaFin;
+	private Time horaInicio;
+	private Time horaFin;
 	
 	//@JsonBackReference
 	//@JsonManagedReference
@@ -95,19 +96,19 @@ public class Taller {
 		this.fechaFin = fechaFin;
 	}
 
-	public Date getHoraInicio() {
+	public Time getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(Time horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Date getHoraFin() {
+	public Time getHoraFin() {
 		return horaFin;
 	}
 
-	public void setHoraFin(Date horaFin) {
+	public void setHoraFin(Time horaFin) {
 		this.horaFin = horaFin;
 	}
 
