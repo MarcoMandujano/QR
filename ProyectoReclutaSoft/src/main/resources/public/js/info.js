@@ -14,19 +14,34 @@ $("#test").click(function(){
 
 $(document).ready(function() {
 	
-	listarEventos();
+	var url = window.location.href
 	
-	var idQrDiv = document.getElementById("qrcode")
-	//var idQrDiv = $('#qrcode')
-	qrcode = new QRCode(idQrDiv, {
-	    text: "http://jindo.dev.naver.com/collie",
-	    width: 128,
-	    height: 128,
-	    colorDark : "#000000",
-	    colorLight : "#ffffff",
-	    correctLevel : QRCode.CorrectLevel.H
-	});
-	
+	if (url.includes("/eventoController/listarEvento/")) {
+		console.log(url)
+	} else {
+		console.log(url)
+	//	var model = '@Html.Raw(Json.Encode(Model))';
+	//	var model2 = '@Html.Raw(Model.json)';
+	//	console.log(model)
+	//	console.log(model2)
+		
+	//	var i = 0;
+	//    var jsArray = @Html.Raw(Json.Serialize(Model));
+	//    console.log(jsArray[i].Id;)
+		
+		listarEventos();
+		
+		var idQrDiv = document.getElementById("qrcode")
+		//var idQrDiv = $('#qrcode')
+		qrcode = new QRCode(idQrDiv, {
+		    text: "http://jindo.dev.naver.com/collie",
+		    width: 128,
+		    height: 128,
+		    colorDark : "#000000",
+		    colorLight : "#ffffff",
+		    correctLevel : QRCode.CorrectLevel.H
+		});
+	}
 	
 });
 
