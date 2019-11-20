@@ -143,5 +143,10 @@ public class EventoServiceImpl implements EventoService {
 		return eventos;
 		
 	}
+
+	@Override
+	public Evento consultarEvento(int id) throws AppExcepcion {
+		return eventoRepository.findEvent(id);
+	}
 	
 }

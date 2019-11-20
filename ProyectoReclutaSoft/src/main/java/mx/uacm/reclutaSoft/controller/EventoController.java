@@ -114,18 +114,20 @@ public class EventoController {
 		//localhost:9090/eventoController/listarEvento?data=%7B%22id%22%3A%221%22%7D
 		//localhost:9090/eventoController/listarEvento1
 		
-		
-		
 		Map <String, String> JSON = new HashMap<String, String>();
+		ObjectMapper mapper = new ObjectMapper();
+		String eventosString;
+		Evento evento = new Evento();
 		
 		try {
-			
+			evento = eventoService.consultarEvento(Integer.parseInt(id));
 			log.debug(id);
+			eventosString = mapper.writeValueAsString(evento);
+			log.debug("Evento:::: " + eventosString);
+			//JSON.put()
+			//model.put("evento",evento.getNombreEvento());
 			
-			JSON.put("exito", "se logro aaaaaa");
-			//model.addAttribute("json", "hola");
-			
-			model.put("texto", JSON);
+			model.put("evento", evento);
 			
 		} catch (Exception e) {
 			log.debug("Error al listar evento********." + e.getMessage());
