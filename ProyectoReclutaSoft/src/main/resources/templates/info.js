@@ -119,13 +119,6 @@ function despliegaEventos(data) {
     	for (var j = 0; j < talleres.length; j++) {
 			console.log(talleres[j].id)
 			console.log(talleres[j].nombre)
-<<<<<<< HEAD
-			document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
-			document.getElementById("inputDescipcionEvento").value = eventos[i].nombreEvento;
-			//$("#inputNombreEvento").text(eventos[i].nombreEvento)
-			//$("#inputDescipcionEvento").text(eventos[i].descripcion)
-			//$("#inputNombrePlantel").text(eventos[i].plantel)
-=======
 			//document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
 			$("#inputNombreEvento").val(eventos[i].nombreEvento);
 			$("#inputDescripcionEvento").val(String(eventos[i].descripcion));
@@ -136,7 +129,6 @@ function despliegaEventos(data) {
 //			$("#inputHoraInicio").val();
 //			$("#inputHoraFin").val();
 			
->>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
 			
 		}
     	

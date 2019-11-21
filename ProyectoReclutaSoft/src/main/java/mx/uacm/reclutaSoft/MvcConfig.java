@@ -1,12 +1,24 @@
 package mx.uacm.reclutaSoft;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+//@EnableWebMvc
+//@EnableWebMvc
+//@ComponentScan
+//@EnableAutoConfiguration
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
+	
+	
+	private static final String[] RESOURCE_LOCATIONS = {
+			"classpath:/META-INF/resources/", "classpath:/resources/",
+			"classpath:/static/", "classpath:/public/", "classpath:/public/js/" };
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -36,5 +48,45 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/webjars/**")
         .addResourceLocations("classpath:/META-INF/resources/webjars/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/public/");
+		registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
+		
+//		registry.addResourceHandler("/**")
+//        .addResourceLocations("classpath:/**");
+		if (!registry.hasMappingForPattern("/**")) {
+			registry.addResourceHandler("/**").addResourceLocations(
+					RESOURCE_LOCATIONS);
+		}
+		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

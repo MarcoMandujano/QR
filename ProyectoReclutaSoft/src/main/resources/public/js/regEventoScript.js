@@ -6,8 +6,10 @@ function agregarFila() {
 	taller.nombreTallerista = $("#inputNombreTallerista").val();
 	taller.descripcionTaller = $("#inputDescripcionTaller").val();
 	taller.fechaTaller = $("#inputFechaTaller").val();
-	taller.horaInicioTaller = $("#inputHoraInicioTaller").val();
-	taller.horaFinTaller = $("#inputHoraFinTaller").val();
+//	taller.horaInicioTaller = $("#inputHoraInicioTaller").val();
+//	taller.horaFinTaller = $("#inputHoraFinTaller").val();
+	taller.horaInicioTaller = document.getElementById("inputHoraInicioTaller").value;
+	taller.horaFinTaller = document.getElementById("inputHoraFinTaller").value;
 	taller.salorTaller = $("#inputSalonTaller").val();
 	taller.inputDescipcionUbicacionTaller = $("#inputDescipcionUbicacionTaller").val();
 	talleres.push(taller);
@@ -52,11 +54,16 @@ function registrarEvento() {
 	evento.descripcion = $("#inputDescripcionEvento").val();
 	evento.plantel = $("#inputNombrePlantel").val();
 	//evento.salon = $("#inputSalon").val();
-	evento.descipcionUbicacion = $("#inputDescripcionUbicacion").val();
+	evento.descripcionUbicacion = $("#inputDescripcionUbicacion").val();
 	evento.fechaInicio = $("#inputFechaInicio").val();
 	evento.fechaFin = $("#inputFechaFin").val();
 	evento.horaInicio = $("#inputHoraInicio").val();
 	evento.horaFin = $("#inputHoraFin").val();
+	
+	evento.horaInicio = document.getElementById("inputHoraInicio");
+	evento.horaFin = document.getElementById("inputHoraFin");
+	
+	
 	evento.talleres = talleres;
 	
 	console.log(evento);

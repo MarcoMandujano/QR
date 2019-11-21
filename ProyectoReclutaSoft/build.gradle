@@ -54,6 +54,12 @@ dependencies {
    
 }
 
+processResources {
+    from ('js/') {
+        into 'public'
+    }
+}
+
 /*jacocoTestReport {
     reports {
         xml.enabled false

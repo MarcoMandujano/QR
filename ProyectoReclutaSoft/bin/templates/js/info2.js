@@ -14,39 +14,25 @@ $("#test").click(function(){
 
 $(document).ready(function() {
 	
-	var url = window.location.href
+		
+	listarEvento();
 	
-	if (url.includes("/eventoController/listarEvento/")) {
-		console.log(url)
-	} else {
-		console.log(url)
-	//	var model = '@Html.Raw(Json.Encode(Model))';
-	//	var model2 = '@Html.Raw(Model.json)';
-	//	console.log(model)
-	//	console.log(model2)
-		
-	//	var i = 0;
-	//    var jsArray = @Html.Raw(Json.Serialize(Model));
-	//    console.log(jsArray[i].Id;)
-		
-		listarEventos();
-		
-		var idQrDiv = document.getElementById("qrcode")
-		//var idQrDiv = $('#qrcode')
-		qrcode = new QRCode(idQrDiv, {
-		    text: "http://jindo.dev.naver.com/collie",
-		    width: 128,
-		    height: 128,
-		    colorDark : "#000000",
-		    colorLight : "#ffffff",
-		    correctLevel : QRCode.CorrectLevel.H
-		});
-	}
+	var idQrDiv = document.getElementById("qrcode")
+	//var idQrDiv = $('#qrcode')
+	qrcode = new QRCode(idQrDiv, {
+	    text: "http://jindo.dev.naver.com/collie",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+	
 	
 });
 
 
-function listarEventos() {
+function listarEvento() {
 	
 	
 	$.ajax({
@@ -119,13 +105,6 @@ function despliegaEventos(data) {
     	for (var j = 0; j < talleres.length; j++) {
 			console.log(talleres[j].id)
 			console.log(talleres[j].nombre)
-<<<<<<< HEAD
-			document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
-			document.getElementById("inputDescipcionEvento").value = eventos[i].nombreEvento;
-			//$("#inputNombreEvento").text(eventos[i].nombreEvento)
-			//$("#inputDescipcionEvento").text(eventos[i].descripcion)
-			//$("#inputNombrePlantel").text(eventos[i].plantel)
-=======
 			//document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
 			$("#inputNombreEvento").val(eventos[i].nombreEvento);
 			$("#inputDescripcionEvento").val(String(eventos[i].descripcion));
@@ -136,7 +115,6 @@ function despliegaEventos(data) {
 //			$("#inputHoraInicio").val();
 //			$("#inputHoraFin").val();
 			
->>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
 			
 		}
     	
