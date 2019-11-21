@@ -49,21 +49,50 @@ footer {
 	
 	<div role="main" class="container">
 		<br/>
-		<h1 class="mt-5">Información de evento</h1>
-		
-		<div class="card">
-		  <div class="card-header" >
-		  	<p>Nombre del evento:  <span th:text="${evento?.nombreEvento}"></span></p>
-		  </div>
-		  <div class="card-body">
-		    <blockquote class="blockquote mb-0">
-		    	<p>Descripción: <span th:text="${evento?.descripcion}"></span></p>
-		      	<p>Plantel:     <span th:text="${evento?.plantel}"></span></p>
-		      	
-		    </blockquote>
-		  </div>
-		</div>
-		
+		<span th:if="${evento?.nombreEvento != null}">
+			<h1 class="mt-5">Información de evento</h1>
+			
+			<div class="card">
+			  <div class="card-header" >
+			  	<p>Nombre del evento:  <span th:text="${evento?.nombreEvento}"></span></p>
+			  </div>
+			  <div class="card-body">
+			    <blockquote class="blockquote mb-0">
+			    	<p>Descripción: <span th:text="${evento?.descripcion}"></span></p>
+			      	<p>Plantel:     <span th:text="${evento?.plantel}"></span></p>
+			      	<p>La ubicación del evento sera en: <span >Ubicación</span></p>
+					<span th:if="${evento?.talleres != null}">
+					<h4>Talleres:</h4>
+						<table class="table table-borderless">
+						  <thead>
+						    <tr>
+						      <th scope="col">Nombre taller</th>
+						      <th scope="col">Tallerista</th>
+						      <th scope="col">Descripción del taller</th>
+						      <th scope="col">Fecha de inicio del taller</th>
+						      <th scope="col">Fecha de termino del taller</th>
+						      <th scope="col">Hora de inicio del taller</th>
+						      <th scope="col">Hora de termino del taller</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="tallerer: ${evento?.talleres}">
+						      <th th:text="${tallerer.nombre}"></th>
+						      <td th:text="${tallerer.tallerista}"></td>
+						      <td th:text="${tallerer.descripcion}"></td>
+						      <td th:text="${tallerer.fechaInicio}"></td>
+						      <td th:text="${tallerer.fechaFin}"></td>
+						      <td th:text="${tallerer.horaInicio}"></td>
+						      <td th:text="${tallerer.horaFin}"></td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+					</span>
+			    </blockquote>
+			  </div>
+			</div>
+		</span>
 		<h1 class="mt-5">Lista de eventos publicados en la UACM</h1>
 		<p class="lead">Listado de eventos agregados para el sistema de
 			letras habladas.</p>
@@ -532,28 +561,6 @@ footer {
 			</div>
 		</div>
 	</div>
-
-	<!-- Small modal -->
-	<!-- 	<button type="button" class="btn btn-primary" data-toggle="modal" -->
-	<!-- 		data-target=".bd-example-modal-sm">Small modal</button> -->
-
-	<!-- 	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" -->
-	<!-- 		aria-labelledby="mySmallModalLabel" aria-hidden="true"> -->
-	<!-- 		<div class="modal-dialog modal-sm"> -->
-	<!-- 			<div class="modal-content">...</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
-
-	
-
-
-<!-- 	<footer class="footer"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<span class="text-muted">Letras habladas UACM SLT.</span> -->
-
-<!-- 		</div> -->
-<!-- 	</footer> -->
-
 
 	<script type="text/javascript" src="js/info.js"></script>
 
