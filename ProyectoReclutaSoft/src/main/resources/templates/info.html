@@ -1,66 +1,51 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" lang="es">
-<head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous" />
-<title>Inicio</title>
-<link href="paginas/sticky-footer-navbar.css" rel="stylesheet" />
-<script src="webjars/qrcodejs/07f829d/qrcode.js"></script>
-<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<style>
-/*
-	#qrcode {
-	  width:160px;
-	  height:160px;
-	  margin-top:15px;
-	}
-	*/
-footer {
-	background-color: black;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 40px;
-	color: white;
-}
-</style>
-
-</head>
-<body>
-
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="/index1">Agregar evento</a>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="">Lista
-							de eventos</a></li>
-				</ul>
-			</div>
-		</nav>
-	</header>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+		<title>Inicio</title>
+		<link href="paginas/sticky-footer-navbar.css" rel="stylesheet"/>
+		<script src="webjars/qrcodejs/07f829d/qrcode.js"></script>
+		<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			footer {
+				background-color: black;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 40px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
 	
-	<div role="main" class="container">
-		<br/>
-		<span th:if="${evento?.nombreEvento != null}">
-			<h1 class="mt-5">Información de evento</h1>
-			
-			<div class="card">
-			  <div class="card-header" >
-			  	<p>Nombre del evento:  <span th:text="${evento?.nombreEvento}"></span></p>
-			  </div>
-			  <div class="card-body">
-			    <blockquote class="blockquote mb-0">
-			    	<p>Descripción: <span th:text="${evento?.descripcion}"></span></p>
-			      	<p>Plantel:     <span th:text="${evento?.plantel}"></span></p>
-			      	<p>La ubicación del evento sera en: <span >Ubicación</span></p>
+		<header>
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<a class="navbar-brand" href="/index1">Agregar evento</a>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link" href="">Lista
+								de eventos</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		
+		<div role="main" class="container">
+			<br/>
+			<span th:if="${evento?.nombreEvento != null}">
+				<h1 class="mt-5">Información de evento</h1>
+				<div class="card">
+					 <div class="card-header" >
+					 	<p>Nombre del evento:  <span th:text="${evento?.nombreEvento}"></span></p>
+					 </div>
+				 <div class="card-body">
+				   <blockquote class="blockquote mb-0">
+				   	<p>Descripción: <span th:text="${evento?.descripcion}"></span></p>
+				     	<p>Plantel:     <span th:text="${evento?.plantel}"></span></p>
+				     	<p>La ubicación del evento sera en: <span th:text="${evento?.descripcionUbicacion}"></span></p>
 					<span th:if="${evento?.talleres != null}">
 					<h4>Talleres:</h4>
 						<table class="table table-borderless">
@@ -89,696 +74,495 @@ footer {
 						  </tbody>
 						</table>
 					</span>
-			    </blockquote>
-			  </div>
-			</div>
-		</span>
-		<h1 class="mt-5">Lista de eventos publicados en la UACM</h1>
-		<p class="lead">Listado de eventos agregados para el sistema de
-			letras habladas.</p>
-		<table class="table" id="tablaEventos">
-			<caption>Lista de eventos</caption>
-			<thead>
-				<tr>
-					<th scope="col">#id</th>
-					<th scope="col">Nombre del evento</th>
-					<th scope="col">Fecha de evento</th>
-					<th scope="col">Fecha de termino del evento</th>
-					<th scope="col">Tipo de evento</th>
-					<th scope="col">Descripción</th>
-					<th scope="col">Plantel</th>
-					<th scope="col" id="test">Detalle de evento</th>
-					<th scope="col"></th>
-
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-
-
-
-
-	<!-- Large modal -->
-	<!-- 	<button type="button" class="btn btn-primary" data-toggle="modal" -->
-	<!-- 		data-target=".bd-example-modal-lg">Large modal</button> -->
-
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-
-
-				<div class="container">
-
-					<br />
-					<div class="row">
-						<!-- 					<div class="col-sm-5"></div> -->
-						<div class="col-sm-8">
-							<h2 class="mt-5">Código QR de evento</h2>
-						</div>
-						<div class="col-sm-4">
-							<div id="qrcode"></div>
-						</div>
-					</div>
-					<!-- 					<br/> -->
-
-					<div class="row justify-content-md-center">
-						<!-- <div class="col-sm-4"></div> -->
-						<div class="col-sm-12 align-self-center">
-							<h3 class="mt-5 text-center">Evento</h3>
-						</div>
-						<!-- <div class="col-sm-4"></div> -->
-					</div>
-
-
-					<!--      		<div class="container"> -->
-					<div class="row">
-						<!-- 
-	     			<div class="col-sm-1">
-	     			</div>
-	     			-->
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">
-										<label for="inputNombreEvento">Nombre evento</label>
-									</span>
-								</div>
-								<input type="text" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm" id="inputNombreEvento"
-									name="nombreEvento" placeholder="Ingrese nombre de eveto"
-									required="true" />
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<!--  <h3 class="mt-5">Descripción del evento</h3> -->
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text"> <label
-										for="inputDescipcionEvento">Describe el evento</label>
-									</span>
-								</div>
-								<textarea class="form-control" aria-label="DescripcionEvento"
-									id="inputDescripcionEvento" name="descipcionEvento"
-									placeholder="Ingrese descripcion de eveto" required="true"></textarea>
-							</div>
-						</div>
-						<!-- 
-	     			<div class="col-sm-1">
-	     			</div>
-	     			 -->
-					</div>
-					<!--      		</div> -->
-
-					<div class="row justify-content-md-center">
-						<!-- <div class="col-sm-4"></div> -->
-						<div class="col-sm-12 align-self-center">
-							<h3 class="mt-5 text-center">Ubicación</h3>
-						</div>
-						<!-- <div class="col-sm-4"></div> -->
-					</div>
-
-
-
-					<!-- 			<div class="container"> -->
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">
-										<label for="inputNombrePlantel">Plantel</label>
-									</span>
-								</div>
-								<!-- 
-							<input type="text" class="form-control" aria-label="Small"
-								aria-describedby="inputGroup-sizing-sm" id="inputNombrePlantel"
-								name="plantel" placeholder="Ingrese nombre de plantel"
-								required="true" />
-							 -->
-
-								<select class="form-control" id="inputNombrePlantel"
-									required="true" name="plantel">
-									<option value="sanLorenzoTezonco">San Lorenzo Tezonco</option>
-									<option value="casaLibertad">Casa Libertad</option>
-									<option value="centroHistorico">Centro Histórico</option>
-									<option value="cuautepec">Cuautepec</option>
-									<option value="delValle">Del Valle</option>
-								</select>
-
-							</div>
-						</div>
-
-						<!-- 
-					<div class="col-sm">
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">
-									<label for="inputSalon">Salon</label>
-								</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Small"
-								aria-describedby="inputGroup-sizing-sm" id="inputSalon"
-								name="salon" placeholder="Ingrese nombre de salon o aula"
-								required="true" />
-						</div>
-					</div>
-					-->
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">
-										<label for="inputDescripcionUbicacion">Descripción de
-											ubicación</label>
-									</span>
-								</div>
-								<!-- 
-							<input type="text" class="form-control" aria-label="Small"
-								aria-describedby="inputGroup-sizing-sm"
-								id="inputDescripcionUbicacion" name="descipcionUbicacion"
-								placeholder="Ingrese descripcion de ubicación" required="true" />
-							 -->
-								<textarea class="form-control" aria-label="DescripcionUbicacion"
-									id="inputDescripcionUbicacion" name="descipcionUbicacion"
-									placeholder="Ingrese descripcion de ubicación" required="true"></textarea>
-
-							</div>
-						</div>
-					</div>
-					<!-- 			</div> -->
-
-
-					<div class="row justify-content-md-center">
-						<!-- <div class="col-sm-4"></div> -->
-						<div class="col-sm-12 align-self-center">
-							<h3 class="mt-5 text-center">Fecha de evento</h3>
-						</div>
-						<!-- <div class="col-sm-4"></div> -->
-					</div>
-
-
-					<!-- <div class="container"> -->
-					<div class="row">
-						<!-- 					<div class="col-sm"> -->
-						<!-- 						<p>Introdusca cuando inicia y cuando termina el evento</p> -->
-						<!-- 					</div> -->
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">
-										<label for="inputFechaInicio">Fecha inicial de evento</label>
-									</span>
-								</div>
-								<input class="form-control" type="date" value="2011-08-19"
-									id="inputFechaInicio" name="fechaInicio" required="true" />
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">
-										<label for="inputFechaFin">Fecha de termino de evento</label>
-									</span>
-								</div>
-								<input class="form-control" type="date" value="2011-08-19"
-									id="inputFechaFin" name="fechaFin" required="true" />
-							</div>
-						</div>
-					</div>
-
-
-
-
-					<!-- 					<div class="row"> -->
-					<!-- 											<div class="col-sm"> -->
-					<!-- 												<p>A que hora comineza el evento y a que hora termina</p> -->
-					<!-- 											</div> -->
-					<!-- 						<div class="col-sm"> -->
-					<!-- 							<div class="input-group input-group-sm mb-3"> -->
-					<!-- 								<div class="input-group-prepend"> -->
-					<!-- 									<span class="input-group-text" id="inputGroup-sizing-sm"> -->
-					<!-- 										<label for="inputHoraInicio">Hora de inicio</label> -->
-					<!-- 									</span> -->
-					<!-- 								</div> -->
-					<!-- 								<input type="time" class="form-control" aria-label="Small" -->
-					<!-- 									aria-describedby="inputGroup-sizing-sm" id="inputHoraInicio" -->
-					<!-- 									name="horaInicio" required="true" /> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 						<div class="col-sm"> -->
-					<!-- 							<div class="input-group input-group-sm mb-3"> -->
-					<!-- 								<div class="input-group-prepend"> -->
-					<!-- 									<span class="input-group-text" id="inputGroup-sizing-sm"> -->
-					<!-- 										<label for="inputHoraFin">Hora de termino</label> -->
-					<!-- 									</span> -->
-					<!-- 								</div> -->
-					<!-- 								<input type="time" class="form-control" aria-label="Small" -->
-					<!-- 									aria-describedby="inputGroup-sizing-sm" id="inputHoraFin" -->
-					<!-- 									name="horaFin" required="true" /> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
-
-
-
-
-					<!-- 			</div> -->
-
-					<div class="row justify-content-md-center">
-						<!-- <div class="col-sm-4"></div> -->
-						<div class="col-sm-12 align-self-center">
-							<h3 class="mt-5 text-center">Talleres</h3>
-						</div>
-						<!-- <div class="col-sm-4"></div> -->
-					</div>
+				   </blockquote>
+				 </div>
 
 				</div>
-				<div class="container" id="containerAddTaller">
-
-					<!-- 			<div class="container"> -->
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
-										del taller</span>
-								</div>
-								<input type="text" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm" id="inputNombreTaller" />
+			</span>
+			<h1 class="mt-5">Lista de eventos publicados en la UACM</h1>
+			<p class="lead">Listado de eventos agregados para el sistema de
+				letras habladas.</p>
+			<table class="table" id="tablaEventos">
+				<caption>Lista de eventos</caption>
+				<thead>
+					<tr>
+						<th scope="col">#id</th>
+						<th scope="col">Nombre del evento</th>
+						<th scope="col">Fecha de evento</th>
+						<th scope="col">Fecha de termino del evento</th>
+						<th scope="col">Tipo de evento</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Plantel</th>
+						<th scope="col" id="test">Detalle de evento</th>
+						<th scope="col"></th>
+	
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	
+	
+	
+		<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="container">
+						<br/>
+						<div class="row">
+							<!-- 					<div class="col-sm-5"></div> -->
+							<div class="col-sm-8">
+								<h2 class="mt-5">Código QR de evento</h2>
+							</div>
+							<div class="col-sm-4">
+								<div id="qrcode"></div>
 							</div>
 						</div>
-						<div class="col-sm-6">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
-										del tallerista</span>
-								</div>
-								<input type="text" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm"
-									id="inputNombreTallerista" />
+						<div class="row justify-content-md-center">
+							<!-- <div class="col-sm-4"></div> -->
+							<div class="col-sm-12 align-self-center">
+								<h3 class="mt-5 text-center">Evento</h3>
 							</div>
 						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion
-										del taller</span>
-								</div>
-								<!-- 
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">
+											<label for="inputNombreEvento">Nombre evento</label>
+										</span>
+									</div>
 									<input type="text" class="form-control" aria-label="Small"
-										aria-describedby="inputGroup-sizing-sm" id="inputDescripcionTaller"/>
-									-->
-								<textarea class="form-control" aria-label="DescripcionTaller"
-									id="inputDescripcionTaller" name="descipcionTaller"
-									placeholder="Ingrese descripcion de taller" required="true"></textarea>
-
+										aria-describedby="inputGroup-sizing-sm" id="inputNombreEvento"
+										name="nombreEvento" placeholder="Ingrese nombre de eveto"
+										required="true" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<!--  <h3 class="mt-5">Descripción del evento</h3> -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"> <label
+											for="inputDescipcionEvento">Describe el evento</label>
+										</span>
+									</div>
+									<textarea class="form-control" aria-label="DescripcionEvento"
+										id="inputDescripcionEvento" name="descipcionEvento"
+										placeholder="Ingrese descripcion de eveto" required="true"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-md-center">
+							<!-- <div class="col-sm-4"></div> -->
+							<div class="col-sm-12 align-self-center">
+								<h3 class="mt-5 text-center">Ubicación</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">
+											<label for="inputNombrePlantel">Plantel</label>
+										</span>
+									</div>
+									<select class="form-control" id="inputNombrePlantel"
+										required="true" name="plantel">
+										<option value="sanLorenzoTezonco">San Lorenzo Tezonco</option>
+										<option value="casaLibertad">Casa Libertad</option>
+										<option value="centroHistorico">Centro Histórico</option>
+										<option value="cuautepec">Cuautepec</option>
+										<option value="delValle">Del Valle</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">
+											<label for="inputDescripcionUbicacion">Descripción de
+												ubicación</label>
+										</span>
+									</div>
+									<textarea class="form-control" aria-label="DescripcionUbicacion"
+										id="inputDescripcionUbicacion" name="descipcionUbicacion"
+										placeholder="Ingrese descripcion de ubicación" required="true"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-md-center">
+							<!-- <div class="col-sm-4"></div> -->
+							<div class="col-sm-12 align-self-center">
+								<h3 class="mt-5 text-center">Fecha de evento</h3>
+							</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">
+											<label for="inputFechaInicio">Fecha inicial de evento</label>
+										</span>
+									</div>
+									<input class="form-control" type="date" value="2011-08-19"
+										id="inputFechaInicio" name="fechaInicio" required="true" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">
+											<label for="inputFechaFin">Fecha de termino de evento</label>
+										</span>
+									</div>
+									<input class="form-control" type="date" value="2011-08-19"
+										id="inputFechaFin" name="fechaFin" required="true" />
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-md-center">
+							<div class="col-sm-12 align-self-center">
+								<h3 class="mt-5 text-center">Talleres</h3>
 							</div>
 						</div>
 					</div>
-
-					<!-- 			</div> -->
-					<!-- 			<div class="container"> -->
-
-
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
-										del taller</span>
+					<div class="container" id="containerAddTaller">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
+											del taller</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Small"
+										aria-describedby="inputGroup-sizing-sm" id="inputNombreTaller" />
 								</div>
-								<input class="form-control" type="date" value="2011-08-19"
-									id="inputFechaTaller" />
+							</div>
+							<div class="col-sm-6">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
+											del tallerista</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Small"
+										aria-describedby="inputGroup-sizing-sm"
+										id="inputNombreTallerista" />
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Hora
-										de inicio</span>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Descripcion
+											del taller</span>
+									</div>
+									<textarea class="form-control" aria-label="DescripcionTaller"
+										id="inputDescripcionTaller" name="descipcionTaller"
+										placeholder="Ingrese descripcion de taller" required="true"></textarea>
+	
 								</div>
-								<input class="form-control" type="time"
-									id="inputHoraInicioTaller" />
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Hora
-										de termino</span>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Fecha
+											del taller</span>
+									</div>
+									<input class="form-control" type="date" value="2011-08-19"
+										id="inputFechaTaller" />
 								</div>
-								<input type="time" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm" id="inputHoraFinTaller" />
 							</div>
+							<div class="col-sm-4">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Hora
+											de inicio</span>
+									</div>
+									<input class="form-control" type="time"
+										id="inputHoraInicioTaller" />
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Hora
+											de termino</span>
+									</div>
+									<input type="time" class="form-control" aria-label="Small"
+										aria-describedby="inputGroup-sizing-sm" id="inputHoraFinTaller" />
+								</div>
+							</div>
+						</div>
+	
+						<div class="row justify-content-md-center">
+							<!-- <div class="col-sm-4"></div> -->
+							<div class="col-sm-12 align-self-center">
+								<h3 class="mt-5 text-center">Agregar ubicación de taller</h3>
+							</div>
+							<!-- <div class="col-sm-4"></div> -->
+						</div>
+						<div class="row">
+							<div class="col-sm">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Salon</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Small"
+										aria-describedby="inputGroup-sizing-sm" id="inputSalonTaller" />
+								</div>
+							</div>
+	
+							<div class="col-sm">
+								<div class="input-group input-group-sm mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-sm">Descripción
+											ubicación de taller </span>
+									</div>
+									<textarea class="form-control"
+										aria-label="DescripcionUbicacionTaller"
+										id="inputDescipcionUbicacionTaller"
+										name="descipcionUbicacionTaller"
+										placeholder="Ingrese descripcion de ubicacion" required="true"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="form-group" style="text-align: right">
+							<button type="button" class="btn btn-primary"
+								onclick="agregarFila()">Agregar taller</button>
+							<button type="button" class="btn btn-danger"
+								onclick="eliminarFila()">Eliminar ultimo evento</button>
 						</div>
 					</div>
-
-
-					<!-- 			</div> -->
-
-					<!-- 			<div class="container"> -->
-
-
-
-					<div class="row justify-content-md-center">
-						<!-- <div class="col-sm-4"></div> -->
-						<div class="col-sm-12 align-self-center">
-							<h3 class="mt-5 text-center">Agregar ubicación de taller</h3>
-						</div>
-						<!-- <div class="col-sm-4"></div> -->
-					</div>
-					<div class="row">
-						<!-- 
-					<div class="col-sm">
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">Plantel</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Small"
-								aria-describedby="inputGroup-sizing-sm" />
+					<div class="container">
+						<div class="row">
+							<table border="1" class="table" id="tableTalleres">
+								<thead class="thead-dark">
+									<tr>
+										<th>Nombre</th>
+										<th>Tallerista</th>
+										<th>Descripción taller</th>
+										<th>Fecha</th>
+										<th>Hora inicio</th>
+										<th>Hora termino</th>
+										<th>Salon</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
 						</div>
 					</div>
-						-->
-						<div class="col-sm">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Salon</span>
+					<div class="container" id="containerAddTallerButton">
+	
+						<div class="row">
+							<div class="col-sm-9"></div>
+							<div class="col-sm-3">
+								<div class="form-group" style="text-align: right">
+									<button id="guardarEvento" type="button" class="btn btn-primary">Guardar evento</button>
 								</div>
-								<input type="text" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm" id="inputSalonTaller" />
 							</div>
 						</div>
-
-						<div class="col-sm">
-							<div class="input-group input-group-sm mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-sm">Descripción
-										ubicación de taller </span>
-								</div>
-								<!-- 							
-								<input type="text" class="form-control" aria-label="Small"
-									aria-describedby="inputGroup-sizing-sm" id="inputDescripcionTaller"/>
-								 
-								-->
-								<textarea class="form-control"
-									aria-label="DescripcionUbicacionTaller"
-									id="inputDescipcionUbicacionTaller"
-									name="descipcionUbicacionTaller"
-									placeholder="Ingrese descripcion de ubicacion" required="true"></textarea>
-							</div>
-						</div>
-
-					</div>
-					<!-- 			</div> -->
-					<div class="form-group" style="text-align: right">
-						<button type="button" class="btn btn-primary"
-							onclick="agregarFila()">Agregar taller</button>
-						<button type="button" class="btn btn-danger"
-							onclick="eliminarFila()">Eliminar ultimo evento</button>
 					</div>
 				</div>
-
-				<div class="container">
-					<div class="row">
-						<table border="1" class="table" id="tableTalleres">
-							<thead class="thead-dark">
-								<tr>
-									<th>Nombre</th>
-									<th>Tallerista</th>
-									<th>Descripción taller</th>
-									<th>Fecha</th>
-									<!-- <th>Fecha termino</th>  -->
-									<th>Hora inicio</th>
-									<th>Hora termino</th>
-									<th>Salon</th>
-
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
-
-
-					</div>
-
-				</div>
-				<div class="container" id="containerAddTallerButton">
-
-					<div class="row">
-						<div class="col-sm-9"></div>
-						<div class="col-sm-3">
-							<!-- 			</div> -->
-							<div class="form-group" style="text-align: right">
-								<!--
-							<input class="btn btn-secondary" type="submit" name="enviar"
-								value="Guardar evento 2" />
-							-->
-								<button id="guardarEvento" type="button" class="btn btn-primary">Guardar
-									evento</button>
-
-								<!-- 
-					<div class="alert alert-success" role="alert" id="successAlert">
-						Evento y talleres registrados.
-					</div>
-					<div class="alert alert-danger" role="alert" id="dangerAlert">
-						Error al registrar evento y talleres.
-					</div>
-					-->
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-
-
-
-
-				<!-- aqui es el fin -->
 			</div>
 		</div>
-	</div>
-
-	<script type="text/javascript" src="js/info.js"></script>
-
-
-	<script type="text/javascript" th:inline="javascript">
-		/*<![CDATA[*/
-
-		var qrcode;
-		var t_d = 0;
-
-		$("#test").click(function() {
-
-			$('#myModal').on('shown.bs.modal', function() {
-				//$('#myInput').trigger('focus')
+		</div>
+		
+		<script type="text/javascript" src="js/info.js"></script>
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			var qrcode;
+			var t_d = 0;
+			$("#test").click(function() {
+				$('#myModal').on('shown.bs.modal', function() {
+					//$('#myInput').trigger('focus')
+				});
 			});
-
-		});
-
-		$(document).ready(function() {
-
-			var url = window.location.href
-
-			console.log(url)
-			//	var model = '@Html.Raw(Json.Encode(Model))';
-			//	var model2 = '@Html.Raw(Model.json)';
-			//	console.log(model)
-			//	console.log(model2)
-
-			//	var i = 0;
-			//    var jsArray = @Html.Raw(Json.Serialize(Model));
-			//    console.log(jsArray[i].Id;)
-
-			listarEventos();
-
-			var idQrDiv = document.getElementById("qrcode")
-			//var idQrDiv = $('#qrcode')
-			qrcode = new QRCode(idQrDiv, {
-				text : "http://jindo.dev.naver.com/collie",
-				width : 128,
-				height : 128,
-				colorDark : "#000000",
-				colorLight : "#ffffff",
-				correctLevel : QRCode.CorrectLevel.H
+			$(document).ready(function() {
+				var url = window.location.href
+				console.log(url)
+				listarEventos();
+				var idQrDiv = document.getElementById("qrcode")
+				//var idQrDiv = $('#qrcode')
+				qrcode = new QRCode(idQrDiv, {
+					text : "http://jindo.dev.naver.com/collie",
+					width : 128,
+					height : 128,
+					colorDark : "#000000",
+					colorLight : "#ffffff",
+					correctLevel : QRCode.CorrectLevel.H
+				});
 			});
-
-		});
-
-		function listarEventos() {
-
-			$.ajax({
-						url : "/eventoController/listarEventos",
-						type : 'POST',
-						dataType : 'json',
-						//data: evento, 
-						contentType : 'application/json',
-						mimeType : 'application/json',
-						success : function(data) {
-							console.log(JSON.parse(data.eventos))
-							console
-									.log(JSON.parse(data.eventos)[0].nombreEvento)
-							console.log()
-							//eventosJson = JSON.stringify(data.eventos);
-
-							if (data.hasOwnProperty('errorAlListar')) {
-								alert("Erro al listar eventos");
-							}
-
-							if (data.hasOwnProperty('exito')) {
-								//alert("listar eventos exitoso");
-
-								despliegaEventos(data);
-
-								var tipoUsuario = 1;
-								if (tipoUsuario == 1) {
-									$('#containerAddTaller').hide();
-									$('#containerAddTallerButton').hide();
+			function listarEventos() {
+				$.ajax({
+							url : "/eventoController/listarEventos",
+							type : 'POST',
+							dataType : 'json',
+							//data: evento, 
+							contentType : 'application/json',
+							mimeType : 'application/json',
+							success : function(data) {
+								console.log(JSON.parse(data.eventos))
+								console
+										.log(JSON.parse(data.eventos)[0].nombreEvento)
+								console.log()
+								//eventosJson = JSON.stringify(data.eventos);
+	
+								if (data.hasOwnProperty('errorAlListar')) {
+									alert("Erro al listar eventos");
 								}
-
+	
+								if (data.hasOwnProperty('exito')) {
+									//alert("listar eventos exitoso");
+	
+									despliegaEventos(data);
+	
+									var tipoUsuario = 1;
+									if (tipoUsuario == 1) {
+										$('#containerAddTaller').hide();
+										$('#containerAddTallerButton').hide();
+									}
+	
+								}
+	
+							},
+							error : function(data, status, er) {
+								alert("error: " + data + " status: " + status
+										+ " er:" + er);
 							}
-
-						},
-						error : function(data, status, er) {
-							alert("error: " + data + " status: " + status
-									+ " er:" + er);
-						}
-					});
-
-		}
-
-		function despliegaEventos(data) {
-
-			var eventos = JSON.parse(data.eventos);
-			console.log(eventos[0])
-
-			for (var i = 0; i < eventos.length; i++) {
-				console.log(eventos[i].id)
-				console.log(eventos[i].tipoEvento)
-				console.log(eventos[i].nombreEvento)
-				console.log(eventos[i].descripcion)
-				console.log(eventos[i].fechaFin)
-				console.log(eventos[i].fechaInicio)
-				console.log(eventos[i].plantel)
-
-				document.getElementById("tablaEventos").insertRow(-1).innerHTML = '<td>'
-						+ eventos[i].id
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].nombreEvento
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].fechaInicio
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].fechaFin
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].tipoEvento
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].descripcion
-						+ '</td>'
-						+ '<td>'
-						+ eventos[i].plantel
-						+ '</td>'
-						+ '<button id="evento' + eventos[i].id + '" type="button" class="btnEvento btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Detalle de evento</button>';
-				//+ '<td><a href="/index1"><button type="button" class="btn btn-light" >Detalle de evento</button></a></td>';
-				console.log(eventos[i].talleres)
-				var talleres = eventos[i].talleres
+						});
+	
+			}
+	
+			function despliegaEventos(data) {
+	
+				var eventos = JSON.parse(data.eventos);
+				console.log(eventos[0])
+	
+				for (var i = 0; i < eventos.length; i++) {
+					console.log(eventos[i].id)
+					console.log(eventos[i].tipoEvento)
+					console.log(eventos[i].nombreEvento)
+					console.log(eventos[i].descripcion)
+					console.log(eventos[i].fechaFin)
+					console.log(eventos[i].fechaInicio)
+					console.log(eventos[i].plantel)
+	
+					document.getElementById("tablaEventos").insertRow(-1).innerHTML = '<td>'
+							+ eventos[i].id
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].nombreEvento
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].fechaInicio
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].fechaFin
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].tipoEvento
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].descripcion
+							+ '</td>'
+							+ '<td>'
+							+ eventos[i].plantel
+							+ '</td>'
+							+ '<button id="evento' + eventos[i].id + '" type="button" class="btnEvento btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Detalle de evento</button>';
+					//+ '<td><a href="/index1"><button type="button" class="btn btn-light" >Detalle de evento</button></a></td>';
+					console.log(eventos[i].talleres)
+					var talleres = eventos[i].talleres
+					for (var j = 0; j < talleres.length; j++) {
+						console.log(talleres[j].id)
+						console.log(talleres[j].nombre)
+						//document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
+						$("#inputNombreEvento").val(eventos[i].nombreEvento);
+						$("#inputDescripcionEvento").val(
+								String(eventos[i].descripcion));
+						$("#inputNombrePlantel").val(String(eventos[i].plantel));
+						//$("#inputDescripcionUbicacion").val(eventos[i].nombreEvento)
+						$("#inputFechaInicio").val(eventos[i].fechaInicio);
+						$("#inputFechaFin").val(eventos[i].fechaFin);
+						//			$("#inputHoraInicio").val();
+						//			$("#inputHoraFin").val();
+	
+					}
+	
+				}
+	
+				$('.btnEvento').click(function() {
+					console.log(this)
+	
+					var idEvento = this.id;
+	
+					console.log(idEvento.slice(6, idEvento.length));
+					console.log(data);
+	
+					var id = idEvento.slice(6, idEvento.length);
+	
+					despliegaEvento(id, data);
+	
+				});
+	
+			}
+	
+			function despliegaEvento(id, data) {
+	
+				var eventos = JSON.parse(data.eventos);
+	
+				console.log(eventos[id - 1]);
+	
+				$("#inputNombreEvento").val(eventos[id - 1].nombreEvento)
+				$("#inputDescripcionEvento").val(
+						String(eventos[id - 1].descripcion))
+				$("#inputNombrePlantel").val(String(eventos[id - 1].plantel))
+				$("#inputFechaInicio").val(eventos[id - 1].fechaInicio);
+				$("#inputFechaFin").val(eventos[id - 1].fechaFin);
+	
+				console.log(eventos[id - 1].talleres)
+				var talleres = eventos[id - 1].talleres
 				for (var j = 0; j < talleres.length; j++) {
 					console.log(talleres[j].id)
 					console.log(talleres[j].nombre)
-					//document.getElementById("inputNombreEvento").value = eventos[i].nombreEvento;
-					$("#inputNombreEvento").val(eventos[i].nombreEvento);
-					$("#inputDescripcionEvento").val(
-							String(eventos[i].descripcion));
-					$("#inputNombrePlantel").val(String(eventos[i].plantel));
-					//$("#inputDescripcionUbicacion").val(eventos[i].nombreEvento)
-					$("#inputFechaInicio").val(eventos[i].fechaInicio);
-					$("#inputFechaFin").val(eventos[i].fechaFin);
-					//			$("#inputHoraInicio").val();
-					//			$("#inputHoraFin").val();
-
+	
+					document.getElementById("tableTalleres").insertRow(-1).innerHTML = '<td>'
+							+ talleres[j].nombre
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].tallerista
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].descripcion
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].fechaInicio
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].horaInicio
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].horaFin
+							+ '</td>'
+							+ '<td>'
+							+ talleres[j].ubicacion.salon + '</td>';
+	
 				}
-
+	
+				addQrCode();
+	
 			}
-
-			$('.btnEvento').click(function() {
-				console.log(this)
-
-				var idEvento = this.id;
-
-				console.log(idEvento.slice(6, idEvento.length));
-				console.log(data);
-
-				var id = idEvento.slice(6, idEvento.length);
-
-				despliegaEvento(id, data);
-
-			});
-
-		}
-
-		function despliegaEvento(id, data) {
-
-			var eventos = JSON.parse(data.eventos);
-
-			console.log(eventos[id - 1]);
-
-			$("#inputNombreEvento").val(eventos[id - 1].nombreEvento)
-			$("#inputDescripcionEvento").val(
-					String(eventos[id - 1].descripcion))
-			$("#inputNombrePlantel").val(String(eventos[id - 1].plantel))
-			$("#inputFechaInicio").val(eventos[id - 1].fechaInicio);
-			$("#inputFechaFin").val(eventos[id - 1].fechaFin);
-
-			console.log(eventos[id - 1].talleres)
-			var talleres = eventos[id - 1].talleres
-			for (var j = 0; j < talleres.length; j++) {
-				console.log(talleres[j].id)
-				console.log(talleres[j].nombre)
-
-				document.getElementById("tableTalleres").insertRow(-1).innerHTML = '<td>'
-						+ talleres[j].nombre
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].tallerista
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].descripcion
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].fechaInicio
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].horaInicio
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].horaFin
-						+ '</td>'
-						+ '<td>'
-						+ talleres[j].ubicacion.salon + '</td>';
-
+	
+			function addQrCode() {
+	
+				t_d = t_d + 1;
+				qrcode.clear();
+				qrcode.makeCode("/eventoController/listarEventos/" + t_d);
 			}
-
-			addQrCode();
-
-		}
-
-		function addQrCode() {
-
-			t_d = t_d + 1;
-			qrcode.clear();
-			qrcode.makeCode("/eventoController/listarEventos/" + t_d);
-		}
-
-		/*]]>*/
-	</script>
-
-
-</body>
+	
+			/*]]>*/
+		</script>
+	</body>
 </html>
