@@ -44,6 +44,8 @@ public class EventoServiceImpl implements EventoService {
 		String nombreEvento = (String) evento.get("nombre");
 		String descripcionEvento = (String) evento.get("descripcion");
 		String plantel = (String) evento.get("plantel");
+		String descripcionUbicacion = (String) evento.get("descripcionUbicacion");
+		log.debug("********************************" + descripcionUbicacion);
 		Date fechaInicio = null;
 		Date fechaFin = null;
 		try {
@@ -61,6 +63,7 @@ public class EventoServiceImpl implements EventoService {
 		eventoASalvar.setPlantel(plantel);
 		eventoASalvar.setFechaInicio(fechaInicio);
 		eventoASalvar.setFechaFin(fechaFin);
+		eventoASalvar.setDescripcionUbicacion(descripcionUbicacion);
 		
 		List<Map <?, ?>> talleresTemp = new ArrayList<Map <?, ?>>();
 		
@@ -121,6 +124,7 @@ public class EventoServiceImpl implements EventoService {
 		
 		//Evento eventoSalvado = new Evento();
 		Evento eventoSalvado = eventoRepository.save(eventoASalvar);
+		log.debug("evento salvado, descripcion de ubicacion en evento: " + eventoSalvado.getDescripcionUbicacion());
 		return eventoSalvado;
 	}
 
