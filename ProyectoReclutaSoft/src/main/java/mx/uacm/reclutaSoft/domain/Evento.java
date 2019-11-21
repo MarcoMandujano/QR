@@ -27,6 +27,7 @@ public class Evento {
 	private String nombreEvento;
 	private String descripcion;
 	private String plantel;
+	private String descripcionUbicacion;
 	private Date fechaInicio;
 	private Date fechaFin;
 	
@@ -111,7 +112,14 @@ public class Evento {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	
+
+	public String getDescripcionUbicacion() {
+		return descripcionUbicacion;
+	}
+
+	public void setDescripcionUbicacion(String descripcionUbicacion) {
+		this.descripcionUbicacion = descripcionUbicacion;
+	}
 	
 	
 }

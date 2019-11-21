@@ -54,7 +54,7 @@ function registrarEvento() {
 	evento.descripcion = $("#inputDescripcionEvento").val();
 	evento.plantel = $("#inputNombrePlantel").val();
 	//evento.salon = $("#inputSalon").val();
-	evento.descipcionUbicacion = $("#inputDescripcionUbicacion").val();
+	evento.descripcionUbicacion = $("#inputDescripcionUbicacion").val();
 	evento.fechaInicio = $("#inputFechaInicio").val();
 	evento.fechaFin = $("#inputFechaFin").val();
 	evento.horaInicio = $("#inputHoraInicio").val();
