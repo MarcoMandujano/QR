@@ -52,6 +52,11 @@ dependencies {
    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
    
+   
+   
+   compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+   
+   
 }
 
 processResources {
@@ -68,3 +73,28 @@ processResources {
     }
 }
 */
+
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
+
+
+
+
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/server"
+    from(configurations.compile) {
+        include "webapp-runner*"
+    }
+}
+
+stage.dependsOn(copyToLib)
