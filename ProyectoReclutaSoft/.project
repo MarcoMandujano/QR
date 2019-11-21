@@ -3,6 +3,7 @@
 	<name>ProyectoReclutaSoft</name>
 	<comment>Project ProyectoReclutaSoft created by Buildship.</comment>
 	<projects>
+		<project>QR4</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

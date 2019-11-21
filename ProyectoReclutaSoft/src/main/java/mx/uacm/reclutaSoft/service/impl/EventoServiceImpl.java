@@ -121,7 +121,7 @@ public class EventoServiceImpl implements EventoService {
 		eventos = eventoRepository.findAllEvent();
 		
 		log.debug(eventoRepository.findAll().toString());
-		
+		log.debug(eventos.get(0).getNombreEvento());
 		/*
 		int i = 0;
 		for (Evento evento : eventos) {

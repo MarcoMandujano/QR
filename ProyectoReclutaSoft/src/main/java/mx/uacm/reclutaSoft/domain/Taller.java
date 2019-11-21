@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Taller {
 	
@@ -26,10 +30,14 @@ public class Taller {
 	private Date horaInicio;
 	private Date horaFin;
 	
+	//@JsonBackReference
+	//@JsonManagedReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="evento_id")
 	private Evento evento;
 	
+	//@JsonManagedReference
 	@OneToOne(mappedBy = "taller", cascade = CascadeType.ALL, 
 			  fetch = FetchType.LAZY, optional = false)
 	private Ubicacion ubicacion;
