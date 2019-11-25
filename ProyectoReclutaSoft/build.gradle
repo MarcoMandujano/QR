@@ -54,7 +54,7 @@ dependencies {
    
    
    
-   compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+  // compile 'com.github.jsimone:webapp-runner:8.5.11.3'
    
    
 }
@@ -74,7 +74,7 @@ processResources {
 }
 */
 
-
+/*
 task copyToLib(type: Copy) {
     into "$buildDir/libs"
     from(configurations.compile)
@@ -98,3 +98,4 @@ task copyToLib(type: Copy) {
 }
 
 stage.dependsOn(copyToLib)
+*/
