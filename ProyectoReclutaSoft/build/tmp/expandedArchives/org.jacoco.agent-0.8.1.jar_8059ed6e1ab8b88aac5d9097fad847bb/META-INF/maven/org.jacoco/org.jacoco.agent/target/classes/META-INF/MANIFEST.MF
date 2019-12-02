@@ -1,10 +1,7 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: esper
 Build-Jdk: 1.8.0_211
-=======
 Built-By: Trafic
 Build-Jdk: 1.8.0_221
->>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
 Created-By: Maven Integration for Eclipse
 

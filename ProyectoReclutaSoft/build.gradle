@@ -54,7 +54,11 @@ dependencies {
    
    
    
+<<<<<<< HEAD
   // compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+=======
+   
+>>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
    
    
 }
@@ -74,6 +78,7 @@ processResources {
 }
 */
 
+<<<<<<< HEAD
 /*
 task copyToLib(type: Copy) {
     into "$buildDir/libs"
@@ -99,3 +104,5 @@ task copyToLib(type: Copy) {
 
 stage.dependsOn(copyToLib)
 */
+=======
+>>>>>>> branch 'master' of https://github.com/MarcoMandujano/QR.git
