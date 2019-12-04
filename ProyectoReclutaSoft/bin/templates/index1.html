@@ -35,9 +35,15 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="/index1">Agregar evento</a>
+			
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="">Eventos UACM</a> 
+					 </li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/index1">Agregar evento</a>
+					</li>
 					<li class="nav-item active"><a class="nav-link" href="/info">Lista
 							de eventos</a></li>
 				</ul>
@@ -56,9 +62,9 @@
 						for="inputNombreEvento">Nombre evento</label>
 					</span>
 				</div>
-				<input type="text" class="form-control" aria-label="Small"
+				<input placeholder="Ingrese nombre de eveto" type="text" class="form-control" 
 					aria-describedby="inputGroup-sizing-sm" id="inputNombreEvento"
-					name="nombreEvento" placeholder="Ingrese nombre de eveto"
+					name="nombreEvento" 
 					required="true" />
 			</div>
 			<h3 class="mt-5">Descripción del evento</h3>
@@ -177,7 +183,7 @@
 									<label for="inputHoraInicio">Hora de inicio</label>
 								</span>
 							</div>
-							<input type="time" step="0" value="00:00:00" class="form-control" aria-label="Small"
+							<input type="time" step="0" value="00:00:00" class="form-control" 
 								aria-describedby="inputGroup-sizing-sm" id="inputHoraInicio"
 								name="horaInicio" required="true" />
 						</div>
@@ -189,7 +195,7 @@
 									<label for="inputHoraFin">Hora de termino</label>
 								</span>
 							</div>
-							<input type="time" step="0" value="00:00:00" class="form-control" aria-label="Small"
+							<input type="time" step="0" value="00:00:00" class="form-control"
 								aria-describedby="inputGroup-sizing-sm" id="inputHoraFin"
 								name="horaFin" required="true" />
 						</div>
@@ -205,7 +211,7 @@
 								<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
 									del taller</span>
 							</div>
-							<input type="text" class="form-control" aria-label="Small"
+							<input type="text" class="form-control"
 								placeholder="Ingrese nombre del taller" aria-describedby="inputGroup-sizing-sm" id="inputNombreTaller"/>
 						</div>
 					</div>
@@ -215,7 +221,7 @@
 								<span class="input-group-text" id="inputGroup-sizing-sm">Nombre
 									del tallerista</span>
 							</div>
-							<input type="text" class="form-control" aria-label="Small"
+							<input type="text" class="form-control"
 								placeholder="Ingrese nombre de tallerista" aria-describedby="inputGroup-sizing-sm" id="inputNombreTallerista"/>
 						</div>
 					</div>
@@ -265,7 +271,7 @@
 								<span class="input-group-text" id="inputGroup-sizing-sm">Hora
 									de termino del taller</span>
 							</div>
-							<input type="time" step="0" value="00:00:00" class="form-control" aria-label="Small"
+							<input type="time" step="0" value="00:00:00" class="form-control"
 								aria-describedby="inputGroup-sizing-sm" id="inputHoraFinTaller"/>
 						</div>
 					</div>
@@ -291,7 +297,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="inputGroup-sizing-sm">Salon</span>
 							</div>
-							<input type="text" class="form-control" aria-label="Small"
+							<input type="text" class="form-control"
 								placeholder="Ingrese salon" aria-describedby="inputGroup-sizing-sm" id="inputSalonTaller"/>
 						</div>
 					</div>
